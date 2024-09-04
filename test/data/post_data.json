@@ -1,0 +1,96 @@
+[
+    {
+        "id": 1,
+        "title": {
+        "rendered": "My New Blog"
+        },
+        "content": {
+            "rendered": "Hello, and welcome to my new blog! In this blog I write about all sorts of things"
+        },
+        "excerpt": {
+            "rendered": "Hello, and welcome to my new blog[...]"
+        },
+        "date": "2023-11-06T22:21:04",
+        "link": "https://wordpress.com",
+        "_embedded": {
+            "wp:featuredmedia":[
+                {
+                    "id":2,
+                    "date":"2023-11-06T22:20:37",
+                     "slug":"first-blog",
+                     "type":"attachment",
+                     "link":"https://wordpress.com/archives/1/first-blog",
+                     "title":{"rendered":"Different Worlds"},
+                     "author":2,
+                     "featured_media":0,
+                     "caption":{"rendered":""},
+                     "alt_text":"",
+                     "media_type":"image",
+                     "mime_type":"image/jpeg",
+                     "source_url":"https://wordpress.com/wp-content/uploads/2024/9/First-Blog-275x300.jpg",
+                     "media_details":{
+                        "width":732,
+                        "height":800,
+                        "file":"2024/9/First-Blog.jpg",
+                        "filesize":191349,
+                        "sizes":{
+                            "medium":{
+                                "file":"First-Blog-275x300.jpg",
+                                "width":275,
+                                "height":300,
+                                "filesize":13153,
+                                "mime_type":"image/jpeg",
+                                "source_url":"https://wordpress.com/wp-content/uploads/2024/9/First-Blog-275x300.jpg"
+                                },
+                            "thumbnail":{
+                                "file":"Different-Worlds-150x150.jpg",
+                                "width":150,
+                                "height":150,
+                                "filesize":4551,
+                                "mime_type":"image/jpeg",
+                                "source_url":"https://wordpress.com/wp-content/uploads/2024/9/First-Blog-150x150.jpg"
+                                }
+                        },
+                        "_links":{
+                            "self":[
+                                {
+                                    "href":"https:\/\/wordpress.com\/wp-json\/wp\/v2\/media\/2"
+                                    }
+                            ],
+                            "collection":[
+                                {
+                                    "href":"https:\/\/wordpress.com\/wp-json\/wp\/v2\/media"
+                                    }
+                                    ],
+                            "about":[
+                                        {
+                                            "href":"https:\/\/wordpress.com\/wp-json\/wp\/v2\/types/attachment"
+                                            }
+                                            ],
+                            "author":[
+                                {
+                                    "embeddable":true,
+                                    "href":"https:\/\/wordpress.com\/wp-json\/wp\/v2\/users\/2"
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "id": 2,
+        "title": {
+            "rendered": "My Second Post"
+        },
+        "content": {
+            "rendered": "My posts have been really popular, but I have been thinking of taking a break."
+        },
+        "excerpt": {
+            "rendered": "My posts have been really popular[...]"
+        },
+        "date": "2022-11-08T22:21:04",
+        "link": "https://www.wordpress.com"
+    }
+]

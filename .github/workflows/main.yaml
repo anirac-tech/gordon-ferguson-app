@@ -1,0 +1,25 @@
+name: black_tax_and_white_benefits
+
+concurrency:
+  group: $-$
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+
+  build:
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
+    with:
+      flutter_version: 3.24.0 #should match pubspec.yaml and flutter --version on dev and qa's machine
+      min_coverage: 80
+      format_directories: lib
+      analyze_directories: lib
+      format_line_length: "100"
+      coverage_excludes: "**/*.g.dart **/*.freezed.g.dart"
