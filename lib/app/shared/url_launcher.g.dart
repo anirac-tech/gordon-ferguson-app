@@ -46,8 +46,7 @@ class LaunchFamily extends Family {
   Iterable<ProviderOrFamily>? get dependencies => _dependencies;
 
   @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
 
   @override
   String? get name => r'launchProvider';
@@ -106,9 +105,7 @@ class LaunchProvider extends AutoDisposeFutureProvider<void> {
           from: launchProvider,
           name: r'launchProvider',
           debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$launchHash,
+              const bool.fromEnvironment('dart.vm.product') ? null : _$launchHash,
           dependencies: LaunchFamily._dependencies,
           allTransitiveDependencies: LaunchFamily._allTransitiveDependencies,
           url: url,
@@ -189,8 +186,7 @@ mixin LaunchRef on AutoDisposeFutureProviderRef<void> {
   String? get url;
 }
 
-class _LaunchProviderElement extends AutoDisposeFutureProviderElement<void>
-    with LaunchRef {
+class _LaunchProviderElement extends AutoDisposeFutureProviderElement<void> with LaunchRef {
   _LaunchProviderElement(super.provider);
 
   @override

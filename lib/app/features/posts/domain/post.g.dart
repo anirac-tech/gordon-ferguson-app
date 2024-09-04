@@ -38,18 +38,15 @@ Map<String, dynamic> _$$PostImplToJson(_$PostImpl instance) {
   return val;
 }
 
-_$RenderableImpl _$$RenderableImplFromJson(Map<String, dynamic> json) =>
-    _$RenderableImpl(
+_$RenderableImpl _$$RenderableImplFromJson(Map<String, dynamic> json) => _$RenderableImpl(
       rendered: json['rendered'] as String,
     );
 
-Map<String, dynamic> _$$RenderableImplToJson(_$RenderableImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$$RenderableImplToJson(_$RenderableImpl instance) => <String, dynamic>{
       'rendered': instance.rendered,
     };
 
-_$EmbeddedImpl _$$EmbeddedImplFromJson(Map<String, dynamic> json) =>
-    _$EmbeddedImpl(
+_$EmbeddedImpl _$$EmbeddedImplFromJson(Map<String, dynamic> json) => _$EmbeddedImpl(
       wpFeaturedmedia: (json['wp:featuredmedia'] as List<dynamic>?)
           ?.map((e) => WpFeaturedmedia.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -64,13 +61,11 @@ Map<String, dynamic> _$$EmbeddedImplToJson(_$EmbeddedImpl instance) {
     }
   }
 
-  writeNotNull('wp:featuredmedia',
-      instance.wpFeaturedmedia?.map((e) => e.toJson()).toList());
+  writeNotNull('wp:featuredmedia', instance.wpFeaturedmedia?.map((e) => e.toJson()).toList());
   return val;
 }
 
-_$WpFeaturedmediaImpl _$$WpFeaturedmediaImplFromJson(
-        Map<String, dynamic> json) =>
+_$WpFeaturedmediaImpl _$$WpFeaturedmediaImplFromJson(Map<String, dynamic> json) =>
     _$WpFeaturedmediaImpl(
       id: (json['id'] as num).toInt(),
       date: DateTime.parse(json['date'] as String),
@@ -79,8 +74,7 @@ _$WpFeaturedmediaImpl _$$WpFeaturedmediaImplFromJson(
       sourceUrl: json['source_url'] as String,
     );
 
-Map<String, dynamic> _$$WpFeaturedmediaImplToJson(
-        _$WpFeaturedmediaImpl instance) =>
+Map<String, dynamic> _$$WpFeaturedmediaImplToJson(_$WpFeaturedmediaImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'date': instance.date.toIso8601String(),

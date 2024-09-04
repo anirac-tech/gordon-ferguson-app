@@ -13,8 +13,7 @@ String _$themeHash() => r'451ca9b444472b94d6248349ea0de23f71427208';
 final themeProvider = Provider<WpaTheme>.internal(
   theme,
   name: r'themeProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$themeHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$themeHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

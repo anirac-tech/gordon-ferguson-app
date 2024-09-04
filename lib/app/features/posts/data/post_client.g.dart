@@ -63,9 +63,7 @@ class _PostClient implements PostClient {
     final _result = await _dio.fetch<List<dynamic>>(_options);
     late List<Post> _value;
     try {
-      _value = _result.data!
-          .map((dynamic i) => Post.fromJson(i as Map<String, dynamic>))
-          .toList();
+      _value = _result.data!.map((dynamic i) => Post.fromJson(i as Map<String, dynamic>)).toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -116,8 +114,7 @@ String _$postClientHash() => r'1cb22ed93a34b0ff4fa5151e3f4e92cadde3e846';
 final postClientProvider = AutoDisposeProvider<PostClient>.internal(
   postClient,
   name: r'postClientProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$postClientHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$postClientHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
@@ -163,8 +160,7 @@ class GetPostsFamily extends Family {
   Iterable<ProviderOrFamily>? get dependencies => _dependencies;
 
   @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
 
   @override
   String? get name => r'getPostsProvider';
@@ -189,8 +185,7 @@ class GetPostsFamily extends Family {
   }
 
   /// Enables overriding the behavior of this provider, no matter the parameters.
-  Override overrideWith(
-      FutureOr<PostResponse> Function(GetPostsRef ref) create) {
+  Override overrideWith(FutureOr<PostResponse> Function(GetPostsRef ref) create) {
     return _$GetPostsFamilyOverride(this, create);
   }
 }
@@ -224,9 +219,7 @@ class GetPostsProvider extends AutoDisposeFutureProvider<PostResponse> {
           from: getPostsProvider,
           name: r'getPostsProvider',
           debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$getPostsHash,
+              const bool.fromEnvironment('dart.vm.product') ? null : _$getPostsHash,
           dependencies: GetPostsFamily._dependencies,
           allTransitiveDependencies: GetPostsFamily._allTransitiveDependencies,
           postQueryData: postQueryData,
@@ -305,8 +298,8 @@ mixin GetPostsRef on AutoDisposeFutureProviderRef<PostResponse> {
   PostQueryData get postQueryData;
 }
 
-class _GetPostsProviderElement
-    extends AutoDisposeFutureProviderElement<PostResponse> with GetPostsRef {
+class _GetPostsProviderElement extends AutoDisposeFutureProviderElement<PostResponse>
+    with GetPostsRef {
   _GetPostsProviderElement(super.provider);
 
   @override
