@@ -1,7 +1,7 @@
 // coverage:ignore-file
-import 'package:wordpress_flutter_app/env/flavor.dart';
-import 'package:wordpress_flutter_app/app/config/logger.dart';
-import 'package:wordpress_flutter_app/app/features/posts/domain/post.dart';
+import 'package:gordon_ferguson_app/env/flavor.dart';
+import 'package:gordon_ferguson_app/app/config/logger.dart';
+import 'package:gordon_ferguson_app/app/features/posts/domain/post.dart';
 import 'package:logger/logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:share_plus/share_plus.dart';

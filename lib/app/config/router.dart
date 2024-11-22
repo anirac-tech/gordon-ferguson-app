@@ -1,11 +1,12 @@
-import 'package:wordpress_flutter_app/app/app_startup.dart';
-import 'package:wordpress_flutter_app/app/features/about/view/about_view.dart';
-import 'package:wordpress_flutter_app/app/shared/home_screen.dart';
-import 'package:wordpress_flutter_app/app/features/posts/domain/post.dart';
-import 'package:wordpress_flutter_app/app/features/posts/view/screens/favorites_view.dart';
-import 'package:wordpress_flutter_app/app/features/posts/view/screens/post_detail_view.dart';
-import 'package:wordpress_flutter_app/app/features/posts/view/screens/posts_view.dart';
-import 'package:wordpress_flutter_app/app/features/settings/settings_view.dart';
+import 'package:gordon_ferguson_app/app/app_startup.dart';
+import 'package:gordon_ferguson_app/app/features/about/view/about_view.dart';
+import 'package:gordon_ferguson_app/app/features/posts/view/screens/categories_view.dart';
+import 'package:gordon_ferguson_app/app/shared/home_screen.dart';
+import 'package:gordon_ferguson_app/app/features/posts/domain/post.dart';
+import 'package:gordon_ferguson_app/app/features/posts/view/screens/favorites_view.dart';
+import 'package:gordon_ferguson_app/app/features/posts/view/screens/post_detail_view.dart';
+import 'package:gordon_ferguson_app/app/features/posts/view/screens/posts_view.dart';
+import 'package:gordon_ferguson_app/app/features/settings/settings_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -17,9 +18,10 @@ part 'router.g.dart';
 
 // private navigators
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
-final _shellNavigatorAKey = GlobalKey<NavigatorState>(debugLabel: 'postsShell');
-final _shellNavigatorBKey = GlobalKey<NavigatorState>(debugLabel: 'favoritesShell');
-final _shellNavigatorCKey = GlobalKey<NavigatorState>(debugLabel: 'aboutShell');
+final _shellKeyPosts = GlobalKey<NavigatorState>(debugLabel: 'postsShell');
+final _shellKeyCategories = GlobalKey<NavigatorState>(debugLabel: 'categoriesShell');
+final _shellKeyFavorites = GlobalKey<NavigatorState>(debugLabel: 'favoritesShell');
+final _shellKeyAbout = GlobalKey<NavigatorState>(debugLabel: 'aboutShell');
 
 @riverpod
 GoRouter goRouter(GoRouterRef ref) {
@@ -50,7 +52,7 @@ GoRouter goRouter(GoRouterRef ref) {
         },
         branches: [
           StatefulShellBranch(
-            navigatorKey: _shellNavigatorAKey,
+            navigatorKey: _shellKeyPosts,
             routes: [
               // Posts View
               GoRoute(
@@ -63,7 +65,20 @@ GoRouter goRouter(GoRouterRef ref) {
             ],
           ),
           StatefulShellBranch(
-            navigatorKey: _shellNavigatorBKey,
+            navigatorKey: _shellKeyCategories,
+            routes: [
+              // Posts View
+              GoRoute(
+                path: CategoriesView.path,
+                name: CategoriesView.name,
+                pageBuilder: (_, __) => const NoTransitionPage(
+                  child: CategoriesView(),
+                ),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            navigatorKey: _shellKeyFavorites,
             routes: [
               // Favorites View
               GoRoute(
@@ -76,7 +91,7 @@ GoRouter goRouter(GoRouterRef ref) {
             ],
           ),
           StatefulShellBranch(
-            navigatorKey: _shellNavigatorCKey,
+            navigatorKey: _shellKeyAbout,
             routes: [
               // About View
               GoRoute(

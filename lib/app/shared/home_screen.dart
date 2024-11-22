@@ -1,7 +1,7 @@
 // Stateful navigation based on:
 // https://github.com/flutter/packages/blob/main/packages/go_router/example/lib/stateful_shell_route.dart
-import 'package:wordpress_flutter_app/app/shared/scaffold_navigation_bar.dart';
-import 'package:wordpress_flutter_app/app/shared/scaffold_navigation_rail.dart';
+import 'package:gordon_ferguson_app/app/shared/scaffold_navigation_bar.dart';
+import 'package:gordon_ferguson_app/app/shared/scaffold_navigation_rail.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

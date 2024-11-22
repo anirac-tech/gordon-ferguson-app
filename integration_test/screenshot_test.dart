@@ -1,7 +1,7 @@
-import 'package:wordpress_flutter_app/app/app.dart';
-import 'package:wordpress_flutter_app/app/config/logger.dart';
-import 'package:wordpress_flutter_app/app/features/posts/view/post_cell.dart';
-import 'package:wordpress_flutter_app/app/shared/navigation_icons.dart';
+import 'package:gordon_ferguson_app/app/app.dart';
+import 'package:gordon_ferguson_app/app/config/logger.dart';
+import 'package:gordon_ferguson_app/app/features/posts/view/post_cell.dart';
+import 'package:gordon_ferguson_app/app/shared/navigation_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

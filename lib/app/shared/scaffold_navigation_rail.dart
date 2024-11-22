@@ -1,4 +1,4 @@
-import 'package:wordpress_flutter_app/app/shared/navigation_icons.dart';
+import 'package:gordon_ferguson_app/app/shared/navigation_icons.dart';
 import 'package:flutter/material.dart';
 
 class ScaffoldWithNavigationRail extends StatelessWidget {
@@ -25,6 +25,10 @@ class ScaffoldWithNavigationRail extends StatelessWidget {
               NavigationRailDestination(
                 label: Text('Posts'),
                 icon: homeIcon,
+              ),
+              NavigationRailDestination(
+                label: Text('Categories'),
+                icon: categoriesIcon,
               ),
               NavigationRailDestination(
                 label: Text('Favorites'),

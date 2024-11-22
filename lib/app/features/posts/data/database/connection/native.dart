@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:wordpress_flutter_app/app/features/posts/data/database/database.dart';
+import 'package:gordon_ferguson_app/app/features/posts/data/database/database.dart';
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 import 'package:path/path.dart' as p;

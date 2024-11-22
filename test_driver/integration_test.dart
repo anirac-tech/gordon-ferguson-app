@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:wordpress_flutter_app/app/config/logger.dart';
+import 'package:gordon_ferguson_app/app/config/logger.dart';
 import 'package:integration_test/integration_test_driver_extended.dart';
 import 'package:flutter_driver/flutter_driver.dart';
 

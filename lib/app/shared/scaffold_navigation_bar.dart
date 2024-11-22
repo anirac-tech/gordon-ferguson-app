@@ -1,4 +1,4 @@
-import 'package:wordpress_flutter_app/app/shared/navigation_icons.dart';
+import 'package:gordon_ferguson_app/app/shared/navigation_icons.dart';
 import 'package:flutter/material.dart';
 
 class ScaffoldWithNavigationBar extends StatelessWidget {
@@ -20,6 +20,7 @@ class ScaffoldWithNavigationBar extends StatelessWidget {
         selectedIndex: selectedIndex,
         destinations: const [
           NavigationDestination(label: 'Posts', icon: homeIcon),
+          NavigationDestination(label: 'Categories', icon: categoriesIcon),
           NavigationDestination(label: 'Favorites', icon: favoritesIcon),
           NavigationDestination(label: 'About', icon: aboutIcon),
         ],

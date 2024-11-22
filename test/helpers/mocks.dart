@@ -1,11 +1,11 @@
 import 'dart:async';
 
-import 'package:wordpress_flutter_app/app/features/posts/data/database/database.dart';
-import 'package:wordpress_flutter_app/app/features/posts/data/post_client.dart';
+import 'package:gordon_ferguson_app/app/features/posts/data/database/database.dart';
+import 'package:gordon_ferguson_app/app/features/posts/data/wordpress_client.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class MockPostClient extends Mock implements PostClient {}
+class MockPostClient extends Mock implements WordpressClient {}
 
 class MockSharedPreferences extends Mock implements SharedPreferences {
   final Map<String, double?> data = Map<String, double?>();

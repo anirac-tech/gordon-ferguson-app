@@ -1,5 +1,5 @@
-import 'package:wordpress_flutter_app/app/features/posts/data/favorites_repository.dart';
-import 'package:wordpress_flutter_app/app/features/posts/domain/post.dart';
+import 'package:gordon_ferguson_app/app/features/posts/data/favorites_repository.dart';
+import 'package:gordon_ferguson_app/app/features/posts/domain/post.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

@@ -1,7 +1,7 @@
-import 'package:wordpress_flutter_app/SETUP.dart';
-import 'package:wordpress_flutter_app/app/app.dart';
-import 'package:wordpress_flutter_app/app/features/posts/view/screens/posts_view.dart';
-import 'package:wordpress_flutter_app/app/shared/navigation_icons.dart';
+import 'package:gordon_ferguson_app/SETUP.dart';
+import 'package:gordon_ferguson_app/app/app.dart';
+import 'package:gordon_ferguson_app/app/features/posts/view/screens/posts_view.dart';
+import 'package:gordon_ferguson_app/app/shared/navigation_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 

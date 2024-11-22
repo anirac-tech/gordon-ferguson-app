@@ -1,4 +1,4 @@
-# WordPress Flutter App
+# Gordon Ferguson Teaching
 
 ![coverage][coverage_badge]
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
@@ -45,7 +45,7 @@ $ flutter run --flavor staging --target lib/main_staging.dart
 $ flutter run --flavor production --target lib/main_production.dart
 ```
 
-_\*WordPress Flutter App works on iOS, Android, Web, and Windows._
+_\*Gordon Ferguson Teaching works on iOS, Android, Web, and Windows._
 
 ---
 
@@ -109,7 +109,7 @@ The structure relies on [flutter_localizations][flutter_localizations_link] and 
 3. Use the new string
 
 ```dart
-import 'package:wordpress_flutter_app/l10n/l10n.dart';
+import 'package:gordon_ferguson_app/l10n/l10n.dart';
 
 @override
 Widget build(BuildContext context) {

@@ -1,11 +1,11 @@
-import 'package:wordpress_flutter_app/app/config/logger.dart';
-import 'package:wordpress_flutter_app/app/features/posts/data/favorites_repository.dart';
-import 'package:wordpress_flutter_app/app/features/posts/data/post_client.dart';
-import 'package:wordpress_flutter_app/app/app.dart';
-import 'package:wordpress_flutter_app/app/features/posts/domain/post_response.dart';
-import 'package:wordpress_flutter_app/app/features/posts/view/post_cell.dart';
-import 'package:wordpress_flutter_app/app/features/settings/shared_preferences.dart';
-import 'package:wordpress_flutter_app/app/shared/navigation_icons.dart';
+import 'package:gordon_ferguson_app/app/config/logger.dart';
+import 'package:gordon_ferguson_app/app/features/posts/data/favorites_repository.dart';
+import 'package:gordon_ferguson_app/app/features/posts/data/wordpress_client.dart';
+import 'package:gordon_ferguson_app/app/app.dart';
+import 'package:gordon_ferguson_app/app/features/posts/domain/post_response.dart';
+import 'package:gordon_ferguson_app/app/features/posts/view/post_cell.dart';
+import 'package:gordon_ferguson_app/app/features/settings/data/shared_preferences.dart';
+import 'package:gordon_ferguson_app/app/shared/navigation_icons.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -17,20 +17,20 @@ import '../helpers/helpers.dart';
 const emptyResponse = PostResponse(posts: [], totalPages: 0, totalResults: 0);
 
 void main() {
-  ProviderContainer createContainer(PostClient postClient) {
+  ProviderContainer createContainer(WordpressClient wordpressClient) {
     final container = ProviderContainer(
       overrides: [
-        postClientProvider.overrideWithValue(postClient),
+        wordpressClientProvider.overrideWithValue(wordpressClient),
       ],
     );
     addTearDown(container.dispose);
     return container;
   }
 
-  Future<void> pumpApp(WidgetTester tester, PostClient postClient) async {
+  Future<void> pumpApp(WidgetTester tester, WordpressClient wordpressClient) async {
     final sharedPreferences = MockSharedPreferences();
     await tester.pumpApp(const App(), overrides: [
-      postClientProvider.overrideWithValue(postClient),
+      wordpressClientProvider.overrideWithValue(wordpressClient),
       favoriteListProvider.overrideWith((ref) => Stream.empty()),
       sharedPreferencesProvider.overrideWith((ref) => Future.value(sharedPreferences)),
     ]);
@@ -51,7 +51,7 @@ void main() {
       final listener = ProviderListener<AsyncValue<PostResponse>>();
 
       container.listen<AsyncValue<PostResponse>>(
-        getPostsProvider((page: 1)),
+        getPostsProvider(page: 1),
         listener.call,
         fireImmediately: true,
       );
@@ -59,7 +59,7 @@ void main() {
       verifyNever(() => listener(null, const AsyncData<PostResponse>(emptyResponse)));
 
       // Act
-      final response = await container.read(getPostsProvider((page: 1)).future);
+      final response = await container.read(getPostsProvider(page: 1).future);
 
       // Assert
       verifyInOrder([
@@ -82,7 +82,7 @@ void main() {
       final listener = ProviderListener<AsyncValue<PostResponse>>();
 
       container.listen<AsyncValue<PostResponse>>(
-        getPostsProvider((page: 1)),
+        getPostsProvider(page: 1),
         listener.call,
         fireImmediately: true,
       );
@@ -91,7 +91,7 @@ void main() {
       verifyNever(() => listener(null, data));
 
       await expectLater(
-        () async => container.read(getPostsProvider((page: 1)).future),
+        () async => container.read(getPostsProvider(page: 1).future),
         throwsA(isA<Exception>()),
       );
       // verify

@@ -13,7 +13,8 @@ String _$logManagerHash() => r'6fd16091494b58f1d66f8069ba31abf171d9b5c2';
 final logManagerProvider = Provider<LogManager>.internal(
   logManager,
   name: r'logManagerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$logManagerHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$logManagerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

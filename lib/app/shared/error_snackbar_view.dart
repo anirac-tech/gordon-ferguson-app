@@ -1,4 +1,4 @@
-import 'package:wordpress_flutter_app/app/config/log_manager.dart';
+import 'package:gordon_ferguson_app/app/config/log_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

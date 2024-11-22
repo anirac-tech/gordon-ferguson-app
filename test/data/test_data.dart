@@ -1,7 +1,7 @@
 import 'dart:math';
 
-import 'package:wordpress_flutter_app/app/features/posts/domain/post.dart';
-import 'package:wordpress_flutter_app/app/features/posts/domain/post_response.dart';
+import 'package:gordon_ferguson_app/app/features/posts/domain/post.dart';
+import 'package:gordon_ferguson_app/app/features/posts/domain/post_response.dart';
 import 'package:dio/dio.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:retrofit/retrofit.dart' as rf;

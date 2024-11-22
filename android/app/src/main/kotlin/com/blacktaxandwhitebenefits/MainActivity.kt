@@ -1,4 +1,4 @@
-package com.blacktaxandwhitebenefits.gfapp
+package gordonferguson.org.gordon_ferguson_teachings_app
 
 import io.flutter.embedding.android.FlutterActivity
 

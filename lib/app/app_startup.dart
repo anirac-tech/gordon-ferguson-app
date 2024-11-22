@@ -1,4 +1,4 @@
-import 'package:wordpress_flutter_app/app/features/settings/shared_preferences.dart';
+import 'package:gordon_ferguson_app/app/features/settings/data/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';

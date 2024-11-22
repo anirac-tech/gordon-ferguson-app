@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'post_client.dart';
+part of 'wordpress_client.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,13 +8,13 @@ part of 'post_client.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element
 
-class _PostClient implements PostClient {
-  _PostClient(
+class _WordpressClient implements WordpressClient {
+  _WordpressClient(
     this._dio, {
     this.baseUrl,
     this.errorLogger,
   }) {
-    baseUrl ??= 'https://www.nasa.gov//wp-json/wp/v2/';
+    baseUrl ??= 'https://gordonferguson.org//wp-json/wp/v2/';
   }
 
   final Dio _dio;
@@ -31,6 +31,7 @@ class _PostClient implements PostClient {
     int perPage = PAGE_SIZE,
     String? order,
     String? orderBy,
+    int? category,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -39,6 +40,7 @@ class _PostClient implements PostClient {
       r'per_page': perPage,
       r'order': order,
       r'orderby': orderBy,
+      r'categories': category,
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
@@ -63,13 +65,50 @@ class _PostClient implements PostClient {
     final _result = await _dio.fetch<List<dynamic>>(_options);
     late List<Post> _value;
     try {
-      _value = _result.data!.map((dynamic i) => Post.fromJson(i as Map<String, dynamic>)).toList();
+      _value = _result.data!
+          .map((dynamic i) => Post.fromJson(i as Map<String, dynamic>))
+          .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
     }
     final httpResponse = HttpResponse(_value, _result);
     return httpResponse;
+  }
+
+  @override
+  Future<List<Category>> getCategories() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<List<Category>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/categories',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<List<dynamic>>(_options);
+    late List<Category> _value;
+    try {
+      _value = _result.data!
+          .map((dynamic i) => Category.fromJson(i as Map<String, dynamic>))
+          .toList();
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
@@ -107,20 +146,22 @@ class _PostClient implements PostClient {
 // RiverpodGenerator
 // **************************************************************************
 
-String _$postClientHash() => r'1cb22ed93a34b0ff4fa5151e3f4e92cadde3e846';
+String _$wordpressClientHash() => r'6a17d57c2be0a08fe26b545efa8d79b3d62d53f4';
 
-/// See also [postClient].
-@ProviderFor(postClient)
-final postClientProvider = AutoDisposeProvider<PostClient>.internal(
-  postClient,
-  name: r'postClientProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product') ? null : _$postClientHash,
+/// See also [wordpressClient].
+@ProviderFor(wordpressClient)
+final wordpressClientProvider = AutoDisposeProvider<WordpressClient>.internal(
+  wordpressClient,
+  name: r'wordpressClientProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$wordpressClientHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef PostClientRef = AutoDisposeProviderRef<PostClient>;
-String _$getPostsHash() => r'2b9fbc2d054da8728bc6cf9892b46e17c6c3db1e';
+typedef WordpressClientRef = AutoDisposeProviderRef<WordpressClient>;
+String _$getPostsHash() => r'22f82f902927e71ba5e84ca1f2603fe9e3b10eaa';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -160,17 +201,20 @@ class GetPostsFamily extends Family {
   Iterable<ProviderOrFamily>? get dependencies => _dependencies;
 
   @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies => _allTransitiveDependencies;
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
 
   @override
   String? get name => r'getPostsProvider';
 
   /// See also [getPosts].
-  GetPostsProvider call(
-    PostQueryData postQueryData,
-  ) {
+  GetPostsProvider call({
+    required int page,
+    int? category,
+  }) {
     return GetPostsProvider(
-      postQueryData,
+      page: page,
+      category: category,
     );
   }
 
@@ -180,12 +224,14 @@ class GetPostsFamily extends Family {
     covariant GetPostsProvider provider,
   ) {
     return call(
-      provider.postQueryData,
+      page: provider.page,
+      category: provider.category,
     );
   }
 
   /// Enables overriding the behavior of this provider, no matter the parameters.
-  Override overrideWith(FutureOr<PostResponse> Function(GetPostsRef ref) create) {
+  Override overrideWith(
+      FutureOr<PostResponse> Function(GetPostsRef ref) create) {
     return _$GetPostsFamilyOverride(this, create);
   }
 }
@@ -209,20 +255,25 @@ class _$GetPostsFamilyOverride implements FamilyOverride {
 /// See also [getPosts].
 class GetPostsProvider extends AutoDisposeFutureProvider<PostResponse> {
   /// See also [getPosts].
-  GetPostsProvider(
-    PostQueryData postQueryData,
-  ) : this._internal(
+  GetPostsProvider({
+    required int page,
+    int? category,
+  }) : this._internal(
           (ref) => getPosts(
             ref as GetPostsRef,
-            postQueryData,
+            page: page,
+            category: category,
           ),
           from: getPostsProvider,
           name: r'getPostsProvider',
           debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product') ? null : _$getPostsHash,
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$getPostsHash,
           dependencies: GetPostsFamily._dependencies,
           allTransitiveDependencies: GetPostsFamily._allTransitiveDependencies,
-          postQueryData: postQueryData,
+          page: page,
+          category: category,
         );
 
   GetPostsProvider._internal(
@@ -232,10 +283,12 @@ class GetPostsProvider extends AutoDisposeFutureProvider<PostResponse> {
     required super.allTransitiveDependencies,
     required super.debugGetCreateSourceHash,
     required super.from,
-    required this.postQueryData,
+    required this.page,
+    required this.category,
   }) : super.internal();
 
-  final PostQueryData postQueryData;
+  final int page;
+  final int? category;
 
   @override
   Override overrideWith(
@@ -250,14 +303,21 @@ class GetPostsProvider extends AutoDisposeFutureProvider<PostResponse> {
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
-        postQueryData: postQueryData,
+        page: page,
+        category: category,
       ),
     );
   }
 
   @override
-  (PostQueryData,) get argument {
-    return (postQueryData,);
+  ({
+    int page,
+    int? category,
+  }) get argument {
+    return (
+      page: page,
+      category: category,
+    );
   }
 
   @override
@@ -275,35 +335,61 @@ class GetPostsProvider extends AutoDisposeFutureProvider<PostResponse> {
       allTransitiveDependencies: allTransitiveDependencies,
       debugGetCreateSourceHash: debugGetCreateSourceHash,
       from: from,
-      postQueryData: postQueryData,
+      page: page,
+      category: category,
     );
   }
 
   @override
   bool operator ==(Object other) {
-    return other is GetPostsProvider && other.postQueryData == postQueryData;
+    return other is GetPostsProvider &&
+        other.page == page &&
+        other.category == category;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, postQueryData.hashCode);
+    hash = _SystemHash.combine(hash, page.hashCode);
+    hash = _SystemHash.combine(hash, category.hashCode);
 
     return _SystemHash.finish(hash);
   }
 }
 
 mixin GetPostsRef on AutoDisposeFutureProviderRef<PostResponse> {
-  /// The parameter `postQueryData` of this provider.
-  PostQueryData get postQueryData;
+  /// The parameter `page` of this provider.
+  int get page;
+
+  /// The parameter `category` of this provider.
+  int? get category;
 }
 
-class _GetPostsProviderElement extends AutoDisposeFutureProviderElement<PostResponse>
-    with GetPostsRef {
+class _GetPostsProviderElement
+    extends AutoDisposeFutureProviderElement<PostResponse> with GetPostsRef {
   _GetPostsProviderElement(super.provider);
 
   @override
-  PostQueryData get postQueryData => (origin as GetPostsProvider).postQueryData;
+  int get page => (origin as GetPostsProvider).page;
+  @override
+  int? get category => (origin as GetPostsProvider).category;
 }
+
+String _$getCategoriesHash() => r'b7088aab0649bc38dc1f0b4d306f28bf4a9e2c18';
+
+/// See also [getCategories].
+@ProviderFor(getCategories)
+final getCategoriesProvider =
+    AutoDisposeFutureProvider<List<Category>>.internal(
+  getCategories,
+  name: r'getCategoriesProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$getCategoriesHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef GetCategoriesRef = AutoDisposeFutureProviderRef<List<Category>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, inference_failure_on_uninitialized_variable, inference_failure_on_function_return_type, inference_failure_on_untyped_parameter, deprecated_member_use_from_same_package

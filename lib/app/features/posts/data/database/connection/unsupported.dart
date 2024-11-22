@@ -1,3 +1,3 @@
-import 'package:wordpress_flutter_app/app/features/posts/data/database/database.dart';
+import 'package:gordon_ferguson_app/app/features/posts/data/database/database.dart';
 
 WpaDatabase constructDb() => throw UnimplementedError();

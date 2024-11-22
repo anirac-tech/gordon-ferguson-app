@@ -1,4 +1,4 @@
-import 'package:wordpress_flutter_app/app/features/settings/settings_view.dart';
+import 'package:gordon_ferguson_app/app/features/settings/settings_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

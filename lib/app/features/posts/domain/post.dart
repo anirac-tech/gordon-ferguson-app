@@ -15,6 +15,7 @@ class Post with _$Post {
     required Renderable excerpt,
     required DateTime date,
     required String link,
+    required List<int> categories,
     @JsonKey(name: '_embedded') Embedded? embedded,
   }) = _Post;
 

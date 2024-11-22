@@ -1,5 +1,5 @@
 // For when we make a provider for cached images
-/*import 'package:wordpress_flutter_app/app/app.dart';
+/*import 'package:gordon_ferguson_app/app/app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_test/flutter_test.dart';

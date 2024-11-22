@@ -1,5 +1,5 @@
-import 'package:wordpress_flutter_app/app/app.dart';
-import 'package:wordpress_flutter_app/bootstrap.dart';
+import 'package:gordon_ferguson_app/app/app.dart';
+import 'package:gordon_ferguson_app/bootstrap.dart';
 
 void main() {
   bootstrap(() => App());

@@ -1,23 +1,26 @@
-import 'package:wordpress_flutter_app/app/features/posts/data/post_client.dart';
-import 'package:wordpress_flutter_app/app/features/posts/domain/post.dart';
-import 'package:wordpress_flutter_app/app/features/posts/view/favorite_icon_button.dart';
-import 'package:wordpress_flutter_app/app/features/posts/view/share_icon_button.dart';
-import 'package:wordpress_flutter_app/app/shared/wpa_image.dart';
+import 'package:gordon_ferguson_app/app/features/posts/data/wordpress_client.dart';
+import 'package:gordon_ferguson_app/app/features/posts/domain/post.dart';
+import 'package:gordon_ferguson_app/app/features/posts/view/favorite_icon_button.dart';
+import 'package:gordon_ferguson_app/app/features/posts/view/share_icon_button.dart';
+import 'package:gordon_ferguson_app/app/shared/wpa_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
 class PostCell extends StatelessWidget {
-  const PostCell(this.post, {this.onTap, this.routeName, super.key});
+  const PostCell(this.post, {this.onTap, this.routeName, super.key, this.color});
 
   final Post post;
   final VoidCallback? onTap;
   final String? routeName;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) => Card(
         shadowColor: Colors.transparent,
+        color: color,
+        surfaceTintColor: (color == null) ? null : Colors.transparent,
         child: ListTile(
           title: Row(
             children: [
@@ -97,16 +100,19 @@ class PostCell extends StatelessWidget {
 }
 
 class PostCellFeatured extends StatelessWidget {
-  const PostCellFeatured(this.post, {this.onTap, this.routeName, super.key});
+  const PostCellFeatured(this.post, {this.onTap, this.routeName, super.key, this.color});
 
   final Post post;
   final VoidCallback? onTap;
   final String? routeName;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) => GestureDetector(
         child: Card(
           shadowColor: Colors.transparent,
+          color: color,
+          surfaceTintColor: (color == null) ? null : Colors.transparent,
           child: Column(
             children: [
               Padding(
@@ -188,12 +194,16 @@ class PostCellFeatured extends StatelessWidget {
 }
 
 class PostCellLoading extends StatelessWidget {
-  const PostCellLoading({super.key});
+  const PostCellLoading({super.key, this.color});
+
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
     return Card(
       shadowColor: Colors.transparent,
+      color: color,
+      surfaceTintColor: (color == null) ? null : Colors.transparent,
       child: SizedBox(
         height: 200,
         child: Container(
@@ -214,24 +224,28 @@ class PostCellError extends ConsumerWidget {
     required this.indexInPage,
     required this.isLoading,
     required this.error,
+    this.color,
   });
 
   final int page;
   final int indexInPage;
   final bool isLoading;
   final String error;
+  final Color? color;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Card(
       shadowColor: Colors.transparent,
+      color: color,
+      surfaceTintColor: (color == null) ? null : Colors.transparent,
       child: ListTile(
         title: Text(error),
         onTap: isLoading
             ? null
             : () {
-                ref.invalidate(getPostsProvider((page: page)));
-                return ref.read(getPostsProvider((page: page)).future);
+                ref.invalidate(getPostsProvider(page: page));
+                return ref.read(getPostsProvider(page: page).future);
               },
         subtitle: const Text('Tap to reload'),
       ),

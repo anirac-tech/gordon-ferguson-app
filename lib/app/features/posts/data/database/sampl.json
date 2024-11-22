@@ -1,0 +1,452 @@
+[
+    {
+        "id": 5,
+        "count": 116,
+        "description": "<strong>Introduction to Articles<\/strong>\r\nThis section of the web site a contains my personal articles that address a variety of topics for a variety of types of readers.\u00a0 Many of these articles have been posted on other web sites, such as <em>Disciples Today<\/em> and various web sites of churches.\u00a0 Some have been posted on the web site the <em>Phoenix Valley Church of Christ<\/em> (phoenixvalleychurch.org), where we lived and served for nine years. \u00a0Others have been posted on the <em>Greater Houston Church<\/em> web site (thegreaterhoustonchurch.com) where we worked with them for several years, ending up our service there in May of 2012. This web site also contains quite a few audio sermons I have preached there in recent years.\r\nMy articles have been written over quite a span of time, which should be kept in mind by the reader.\u00a0 Although some editing and updating of articles may be a possibility, many need to remain in their original context in order to make complete sense.\u00a0 Therefore, the date on which the article was written will be included at the end of some articles, to help give the readers a context.\u00a0 While I might word some things differently if I were writing them today, the timing of the writing sheds some light on where I was at the time of writing and on where our movement of churches was when I wrote the original document.\u00a0 The benefit of taking this approach is that some important historical aspects become obvious.\u00a0 The possible downside is if the reader doesn\u2019t take into account my progress as a writer or the progress of our movement.\u00a0 Thus, I ask for your grace as you read older articles especially!\r\nWhen I add new articles to the web site (which may or may not be newly written), they will appear at the top of the list. The longer they have been on the site, the further down the list they will be. For those of you who have already read the other articles, this will help you spot the new ones more easily. God bless you for taking the time to read and learn.\u00a0 True disciples of Jesus will always maintain a thirst for growth in knowledge and in life generally.\u00a0 May this column provide some help with those worthy endeavors.",
+        "link": "https:\/\/gordonferguson.org\/category\/articles\/",
+        "name": "Articles",
+        "slug": "articles",
+        "taxonomy": "category",
+        "parent": 0,
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/categories\/5",
+                    "targetHints": {
+                        "allow": [
+                            "GET"
+                        ]
+                    }
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/categories"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/taxonomies\/category"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/posts?categories=5"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 21,
+        "count": 17,
+        "description": "",
+        "link": "https:\/\/gordonferguson.org\/category\/bible-interpretation\/",
+        "name": "Bible Interpretation",
+        "slug": "bible-interpretation",
+        "taxonomy": "category",
+        "parent": 0,
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/categories\/21",
+                    "targetHints": {
+                        "allow": [
+                            "GET"
+                        ]
+                    }
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/categories"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/taxonomies\/category"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/posts?categories=21"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 22,
+        "count": 13,
+        "description": "",
+        "link": "https:\/\/gordonferguson.org\/category\/church-life\/",
+        "name": "Church Life",
+        "slug": "church-life",
+        "taxonomy": "category",
+        "parent": 0,
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/categories\/22",
+                    "targetHints": {
+                        "allow": [
+                            "GET"
+                        ]
+                    }
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/categories"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/taxonomies\/category"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/posts?categories=22"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 17,
+        "count": 5,
+        "description": "",
+        "link": "https:\/\/gordonferguson.org\/category\/conversion-issues\/",
+        "name": "Conversion Issues",
+        "slug": "conversion-issues",
+        "taxonomy": "category",
+        "parent": 0,
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/categories\/17",
+                    "targetHints": {
+                        "allow": [
+                            "GET"
+                        ]
+                    }
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/categories"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/taxonomies\/category"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/posts?categories=17"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 20,
+        "count": 19,
+        "description": "",
+        "link": "https:\/\/gordonferguson.org\/category\/doctrinal-questions\/",
+        "name": "Doctrinal Questions",
+        "slug": "doctrinal-questions",
+        "taxonomy": "category",
+        "parent": 0,
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/categories\/20",
+                    "targetHints": {
+                        "allow": [
+                            "GET"
+                        ]
+                    }
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/categories"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/taxonomies\/category"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/posts?categories=20"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 26,
+        "count": 0,
+        "description": "",
+        "link": "https:\/\/gordonferguson.org\/category\/eternitys-brink-podcast-texts\/",
+        "name": "Eternity's Brink--Podcast Texts",
+        "slug": "eternitys-brink-podcast-texts",
+        "taxonomy": "category",
+        "parent": 0,
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/categories\/26",
+                    "targetHints": {
+                        "allow": [
+                            "GET"
+                        ]
+                    }
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/categories"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/taxonomies\/category"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/posts?categories=26"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 18,
+        "count": 13,
+        "description": "",
+        "link": "https:\/\/gordonferguson.org\/category\/god-nature-and-work\/",
+        "name": "God Nature and Work",
+        "slug": "god-nature-and-work",
+        "taxonomy": "category",
+        "parent": 0,
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/categories\/18",
+                    "targetHints": {
+                        "allow": [
+                            "GET"
+                        ]
+                    }
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/categories"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/taxonomies\/category"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/posts?categories=18"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 15,
+        "count": 11,
+        "description": "",
+        "link": "https:\/\/gordonferguson.org\/category\/leadership\/",
+        "name": "Leadership",
+        "slug": "leadership",
+        "taxonomy": "category",
+        "parent": 0,
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/categories\/15",
+                    "targetHints": {
+                        "allow": [
+                            "GET"
+                        ]
+                    }
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/categories"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/taxonomies\/category"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/posts?categories=15"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 7,
+        "count": 3,
+        "description": "It is the purpose of this column on the web site to provide biblical answers to questions that are difficult, and for that reason, perhaps debatable.\u00a0 But since they are asked at times by those with questioning minds, they deserve to be addressed.\u00a0\u00a0 While my intent is not to be controversial in this column, neither is it to avoid challenging topics.\u00a0 When different answers are given by brothers who are well-grounded biblically, that should tell us two things:\u00a0 one, not all biblical subjects are made totally clear in Scripture; and two, since that is the case, we had best avoid dogmatism on such subjects.\u00a0 Some topics are clarified quite well in the Bible, others have little or nothing mentioned about them (thus remaining a mystery), while still others have only enough mentioned about them to allow us to reach tentative conclusions.\u00a0 It is the questions falling into that third category that this column will most often address.\u00a0\r\nSince these questions may require some detail in answering them, new questions and answers will be found at a rate of about twice per month.\u00a0 Feel free to send in questions that you would like to see answered.\u00a0 They may or may not find their way into this column, but they will be given due consideration.\u00a0 May you enjoy the reading and be prompted to dig into Scripture more deeply for yourself!",
+        "link": "https:\/\/gordonferguson.org\/category\/main-pages\/",
+        "name": "Main Pages",
+        "slug": "main-pages",
+        "taxonomy": "category",
+        "parent": 0,
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/categories\/7",
+                    "targetHints": {
+                        "allow": [
+                            "GET"
+                        ]
+                    }
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/categories"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/taxonomies\/category"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/posts?categories=7"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 8,
+        "count": 3,
+        "description": "",
+        "link": "https:\/\/gordonferguson.org\/category\/newsletters\/",
+        "name": "Newsletters",
+        "slug": "newsletters",
+        "taxonomy": "category",
+        "parent": 0,
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/categories\/8",
+                    "targetHints": {
+                        "allow": [
+                            "GET"
+                        ]
+                    }
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/categories"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/taxonomies\/category"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https:\/\/gordonferguson.org\/wp-json\/wp\/v2\/posts?categories=8"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    }
+]

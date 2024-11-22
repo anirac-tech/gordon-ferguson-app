@@ -1,6 +1,6 @@
-import 'package:wordpress_flutter_app/app/config/log_manager.dart';
-import 'package:wordpress_flutter_app/app/features/posts/data/database/database.dart';
-import 'package:wordpress_flutter_app/app/features/posts/domain/post.dart';
+import 'package:gordon_ferguson_app/app/config/log_manager.dart';
+import 'package:gordon_ferguson_app/app/features/posts/data/database/database.dart';
+import 'package:gordon_ferguson_app/app/features/posts/domain/post.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'favorites_repository.g.dart';

@@ -1,6 +1,6 @@
-import 'package:wordpress_flutter_app/app/features/settings/wpa_settings_list.dart';
-import 'package:wordpress_flutter_app/app/shared/wpa_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:gordon_ferguson_app/app/features/settings/wpa_settings_list.dart';
+import 'package:gordon_ferguson_app/app/shared/wpa_app_bar.dart';
 
 class SettingsView extends StatelessWidget {
   const SettingsView({super.key});

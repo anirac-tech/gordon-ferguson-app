@@ -1,6 +1,6 @@
-import 'package:wordpress_flutter_app/SETUP.dart';
-import 'package:wordpress_flutter_app/app/config/log_manager.dart';
-import 'package:wordpress_flutter_app/app/features/posts/domain/post.dart';
+import 'package:gordon_ferguson_app/SETUP.dart';
+import 'package:gordon_ferguson_app/app/config/log_manager.dart';
+import 'package:gordon_ferguson_app/app/features/posts/domain/post.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

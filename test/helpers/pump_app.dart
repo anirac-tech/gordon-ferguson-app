@@ -1,8 +1,8 @@
-import 'package:wordpress_flutter_app/app/features/posts/data/favorites_repository.dart';
-import 'package:wordpress_flutter_app/app/features/posts/data/post_client.dart';
-import 'package:wordpress_flutter_app/app/features/settings/shared_preferences.dart';
+import 'package:gordon_ferguson_app/app/features/posts/data/favorites_repository.dart';
+import 'package:gordon_ferguson_app/app/features/posts/data/wordpress_client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:gordon_ferguson_app/app/features/settings/data/shared_preferences.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../data/test_data.dart';

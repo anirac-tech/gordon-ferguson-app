@@ -1,5 +1,5 @@
-import 'package:wordpress_flutter_app/app/config/logger.dart';
-import 'package:wordpress_flutter_app/app/features/posts/domain/post.dart';
+import 'package:gordon_ferguson_app/app/config/logger.dart';
+import 'package:gordon_ferguson_app/app/features/posts/domain/post.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../data/test_data.dart';
