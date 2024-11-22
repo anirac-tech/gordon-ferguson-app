@@ -27,7 +27,7 @@ dependencies:
   riverpod_annotation: 3.0.0-dev.3
   settings_ui: 2.0.2
   share_plus: ^10.0.0
-  shared_preferences: ^2.3.2
+  shared_preferences: ^2.3.3
   sqlite3_flutter_libs: 0.5.24
   url_launcher: 6.3.0
   
