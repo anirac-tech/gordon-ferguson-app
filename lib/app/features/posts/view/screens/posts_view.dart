@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:gordon_ferguson_app/SETUP.dart';
 import 'package:gordon_ferguson_app/app/features/posts/view/post_stream_table_view.dart';
 import 'package:gordon_ferguson_app/app/features/settings/settings_icon_button.dart';
+import 'package:gordon_ferguson_app/app/shared/wpa_search_bar.dart';
 import 'package:gordon_ferguson_app/app/shared/wpa_app_bar.dart';
 
-class PostsView extends StatelessWidget {
+class PostsView extends HookWidget {
   const PostsView({super.key});
 
   // Route information
@@ -11,13 +14,32 @@ class PostsView extends StatelessWidget {
   static const name = 'posts';
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: WpaAppBar(
-          title: const Text("Latest Posts"),
-          actions: [SettingsIconButton()],
+  Widget build(BuildContext context) {
+    final search = useState(null as String?);
+    return Scaffold(
+      appBar: WpaAppBar(
+        title: const Text(BLOG_TITLE),
+        actions: [SettingsIconButton()],
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            WpaSearchBar(
+              onSubmit: (val) {
+                if (val.isEmpty) {
+                  search.value = null;
+                } else if (search.value != val) {
+                  search.value = val;
+                }
+              },
+            ),
+            Expanded(
+                child: PostStreamTableView(
+              search: search.value,
+            )),
+          ],
         ),
-        body: Center(
-          child: PostStreamTableView(),
-        ),
-      );
+      ),
+    );
+  }
 }

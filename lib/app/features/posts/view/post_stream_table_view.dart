@@ -11,14 +11,25 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class PostStreamTableView extends ConsumerWidget {
-  PostStreamTableView({super.key, this.category, this.tileColor});
+  PostStreamTableView({super.key, this.category, this.search, this.tileColor});
 
   final int? category;
+  final String? search;
   final Color? tileColor;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final responseAsync = ref.watch(getPostsProvider(page: 1, category: category));
+    final responseAsync = search != null
+        ? ref.watch(getPostsProvider(
+            page: 1,
+            category: category,
+            search: search,
+            orderBy: "relevance",
+          ))
+        : ref.watch(getPostsProvider(
+            page: 1,
+            category: category,
+          ));
     final log = ref.watch(logManagerProvider);
     final pageSize = PAGE_SIZE;
 
@@ -33,9 +44,17 @@ class PostStreamTableView extends ConsumerWidget {
             final page = index ~/ pageSize + 1;
             final indexInPage = index % pageSize;
 
-            final responseAsync = ref.watch(
-              getPostsProvider(page: page, category: category),
-            );
+            final responseAsync = search != null
+                ? ref.watch(getPostsProvider(
+                    page: page,
+                    category: category,
+                    search: search,
+                    orderBy: "relevance",
+                  ))
+                : ref.watch(getPostsProvider(
+                    page: page,
+                    category: category,
+                  ));
 
             return responseAsync.when(
               error: (err, stack) => PostCellError(
@@ -56,7 +75,10 @@ class PostStreamTableView extends ConsumerWidget {
                     post,
                     key: Key('${PostsView.name}_${post.id}'),
                     routeName: PostsView.name,
-                    onTap: () => context.pushNamed(PostDetailView.name, extra: post),
+                    onTap: () => context.pushNamed(
+                      PostDetailView.name,
+                      extra: post,
+                    ),
                     color: tileColor,
                   );
                 } else {
@@ -64,7 +86,10 @@ class PostStreamTableView extends ConsumerWidget {
                     post,
                     key: Key('${PostsView.name}_${post.id}'),
                     routeName: PostsView.name,
-                    onTap: () => context.pushNamed(PostDetailView.name, extra: post),
+                    onTap: () => context.pushNamed(
+                      PostDetailView.name,
+                      extra: post,
+                    ),
                     color: tileColor,
                   );
                 }

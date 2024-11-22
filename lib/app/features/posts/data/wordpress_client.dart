@@ -21,11 +21,12 @@ abstract class WordpressClient {
   Future<HttpResponse<List<Post>>> getPosts(
     @Query('page') int page,
     @CancelRequest() CancelToken cancelToken, {
+    @Query('categories') int? category,
     @Query('_embed') bool embed = true,
-    @Query('per_page') int perPage = PAGE_SIZE,
     @Query('order') String? order,
     @Query('orderby') String? orderBy,
-    @Query('categories') int? category,
+    @Query('per_page') int perPage = PAGE_SIZE,
+    @Query('search') String? search,
   });
 
   @GET('/categories')
@@ -41,7 +42,14 @@ WordpressClient wordpressClient(Ref _) {
 //coverage:ignore-end
 
 @riverpod
-FutureOr<PostResponse> getPosts(GetPostsRef ref, {required int page, int? category}) async {
+FutureOr<PostResponse> getPosts(
+  GetPostsRef ref, {
+  required int page,
+  int? category,
+  String? search,
+  String? order,
+  String? orderBy,
+}) async {
   final client = ref.watch(wordpressClientProvider);
 
   final cancelToken = CancelToken();
@@ -67,6 +75,9 @@ FutureOr<PostResponse> getPosts(GetPostsRef ref, {required int page, int? catego
       page,
       cancelToken,
       category: category,
+      search: search,
+      order: order,
+      orderBy: orderBy,
     ),
   );
 }

@@ -27,20 +27,22 @@ class _WordpressClient implements WordpressClient {
   Future<HttpResponse<List<Post>>> getPosts(
     int page,
     CancelToken cancelToken, {
+    int? category,
     bool embed = true,
-    int perPage = PAGE_SIZE,
     String? order,
     String? orderBy,
-    int? category,
+    int perPage = PAGE_SIZE,
+    String? search,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'page': page,
+      r'categories': category,
       r'_embed': embed,
-      r'per_page': perPage,
       r'order': order,
       r'orderby': orderBy,
-      r'categories': category,
+      r'per_page': perPage,
+      r'search': search,
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
@@ -161,7 +163,7 @@ final wordpressClientProvider = AutoDisposeProvider<WordpressClient>.internal(
 );
 
 typedef WordpressClientRef = AutoDisposeProviderRef<WordpressClient>;
-String _$getPostsHash() => r'22f82f902927e71ba5e84ca1f2603fe9e3b10eaa';
+String _$getPostsHash() => r'e08ba191780e23b72fd057e1611722903a33374a';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -211,10 +213,16 @@ class GetPostsFamily extends Family {
   GetPostsProvider call({
     required int page,
     int? category,
+    String? search,
+    String? order,
+    String? orderBy,
   }) {
     return GetPostsProvider(
       page: page,
       category: category,
+      search: search,
+      order: order,
+      orderBy: orderBy,
     );
   }
 
@@ -226,6 +234,9 @@ class GetPostsFamily extends Family {
     return call(
       page: provider.page,
       category: provider.category,
+      search: provider.search,
+      order: provider.order,
+      orderBy: provider.orderBy,
     );
   }
 
@@ -258,11 +269,17 @@ class GetPostsProvider extends AutoDisposeFutureProvider<PostResponse> {
   GetPostsProvider({
     required int page,
     int? category,
+    String? search,
+    String? order,
+    String? orderBy,
   }) : this._internal(
           (ref) => getPosts(
             ref as GetPostsRef,
             page: page,
             category: category,
+            search: search,
+            order: order,
+            orderBy: orderBy,
           ),
           from: getPostsProvider,
           name: r'getPostsProvider',
@@ -274,6 +291,9 @@ class GetPostsProvider extends AutoDisposeFutureProvider<PostResponse> {
           allTransitiveDependencies: GetPostsFamily._allTransitiveDependencies,
           page: page,
           category: category,
+          search: search,
+          order: order,
+          orderBy: orderBy,
         );
 
   GetPostsProvider._internal(
@@ -285,10 +305,16 @@ class GetPostsProvider extends AutoDisposeFutureProvider<PostResponse> {
     required super.from,
     required this.page,
     required this.category,
+    required this.search,
+    required this.order,
+    required this.orderBy,
   }) : super.internal();
 
   final int page;
   final int? category;
+  final String? search;
+  final String? order;
+  final String? orderBy;
 
   @override
   Override overrideWith(
@@ -305,6 +331,9 @@ class GetPostsProvider extends AutoDisposeFutureProvider<PostResponse> {
         debugGetCreateSourceHash: null,
         page: page,
         category: category,
+        search: search,
+        order: order,
+        orderBy: orderBy,
       ),
     );
   }
@@ -313,10 +342,16 @@ class GetPostsProvider extends AutoDisposeFutureProvider<PostResponse> {
   ({
     int page,
     int? category,
+    String? search,
+    String? order,
+    String? orderBy,
   }) get argument {
     return (
       page: page,
       category: category,
+      search: search,
+      order: order,
+      orderBy: orderBy,
     );
   }
 
@@ -337,6 +372,9 @@ class GetPostsProvider extends AutoDisposeFutureProvider<PostResponse> {
       from: from,
       page: page,
       category: category,
+      search: search,
+      order: order,
+      orderBy: orderBy,
     );
   }
 
@@ -344,7 +382,10 @@ class GetPostsProvider extends AutoDisposeFutureProvider<PostResponse> {
   bool operator ==(Object other) {
     return other is GetPostsProvider &&
         other.page == page &&
-        other.category == category;
+        other.category == category &&
+        other.search == search &&
+        other.order == order &&
+        other.orderBy == orderBy;
   }
 
   @override
@@ -352,6 +393,9 @@ class GetPostsProvider extends AutoDisposeFutureProvider<PostResponse> {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, page.hashCode);
     hash = _SystemHash.combine(hash, category.hashCode);
+    hash = _SystemHash.combine(hash, search.hashCode);
+    hash = _SystemHash.combine(hash, order.hashCode);
+    hash = _SystemHash.combine(hash, orderBy.hashCode);
 
     return _SystemHash.finish(hash);
   }
@@ -363,6 +407,15 @@ mixin GetPostsRef on AutoDisposeFutureProviderRef<PostResponse> {
 
   /// The parameter `category` of this provider.
   int? get category;
+
+  /// The parameter `search` of this provider.
+  String? get search;
+
+  /// The parameter `order` of this provider.
+  String? get order;
+
+  /// The parameter `orderBy` of this provider.
+  String? get orderBy;
 }
 
 class _GetPostsProviderElement
@@ -373,6 +426,12 @@ class _GetPostsProviderElement
   int get page => (origin as GetPostsProvider).page;
   @override
   int? get category => (origin as GetPostsProvider).category;
+  @override
+  String? get search => (origin as GetPostsProvider).search;
+  @override
+  String? get order => (origin as GetPostsProvider).order;
+  @override
+  String? get orderBy => (origin as GetPostsProvider).orderBy;
 }
 
 String _$getCategoriesHash() => r'b7088aab0649bc38dc1f0b4d306f28bf4a9e2c18';

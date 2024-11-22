@@ -2,6 +2,7 @@ import 'package:gordon_ferguson_app/app/features/posts/data/wordpress_client.dar
 import 'package:gordon_ferguson_app/app/features/posts/domain/post.dart';
 import 'package:gordon_ferguson_app/app/features/posts/view/favorite_icon_button.dart';
 import 'package:gordon_ferguson_app/app/features/posts/view/share_icon_button.dart';
+import 'package:gordon_ferguson_app/app/features/theme_mode/theme_mode.dart';
 import 'package:gordon_ferguson_app/app/shared/wpa_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -194,20 +195,21 @@ class PostCellFeatured extends StatelessWidget {
       );
 }
 
-class PostCellLoading extends StatelessWidget {
+class PostCellLoading extends ConsumerWidget {
   const PostCellLoading({super.key, this.color});
 
   final Color? color;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isLight = ref.watch(themeModeNotifierProvider) == ThemeMode.light;
     return Card(
       shadowColor: Colors.transparent,
       color: color,
       surfaceTintColor: (color == null) ? null : Colors.transparent,
       child: Shimmer.fromColors(
-        baseColor: Colors.grey.shade200,
-        highlightColor: Colors.grey.shade100,
+        baseColor: isLight ? Colors.grey.shade200 : Colors.black38,
+        highlightColor: isLight ? Colors.grey.shade100 : Colors.black12,
         enabled: true,
         child: Container(
           height: 150,

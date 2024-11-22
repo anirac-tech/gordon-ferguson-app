@@ -34,14 +34,14 @@ https://gordonferguson.org/wp-content/uploads/2016/11/Final-Main-Header.jpg''';
       child: Scaffold(
         appBar: WpaAppBar(title: const Text('About'), actions: [SettingsIconButton()]),
         body: SingleChildScrollView(
-          child: AdjustableTextWidget(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                WpaImage(_imageUrl),
-                SizedBox(height: 8.0),
-                Padding(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              WpaImage(_imageUrl),
+              SizedBox(height: 8.0),
+              AdjustableTextWidget(
+                child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Container(
                     padding: const EdgeInsets.all(16.0),
@@ -61,19 +61,19 @@ https://gordonferguson.org/wp-content/uploads/2016/11/Final-Main-Header.jpg''';
                     ),
                   ),
                 ),
-                ...urls.keys.map(
-                  (key) {
-                    final url = urls[key];
-                    return ElevatedButton(
-                      onPressed: () =>
-                          (url == _url.value) ? ref.invalidate(launchProvider) : _url.value = url,
-                      child: Text(key),
-                    );
-                  },
-                ),
-                SizedBox(height: 16.0),
-              ],
-            ),
+              ),
+              ...urls.keys.map(
+                (key) {
+                  final url = urls[key];
+                  return ElevatedButton(
+                    onPressed: () =>
+                        (url == _url.value) ? ref.invalidate(launchProvider) : _url.value = url,
+                    child: Text(key),
+                  );
+                },
+              ),
+              SizedBox(height: 16.0),
+            ],
           ),
         ),
       ),
