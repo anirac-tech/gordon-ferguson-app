@@ -27,7 +27,7 @@ class PostStreamTableView extends ConsumerWidget {
       data: (data) {
         log.d("[Post Stream] ${data.posts.map((e) => '${e.id}')}");
         return ListView.separated(
-          padding: EdgeInsets.only(top: 8.0),
+          padding: EdgeInsets.symmetric(vertical: 8.0),
           itemCount: data.totalResults,
           itemBuilder: (context, index) {
             final page = index ~/ pageSize + 1;

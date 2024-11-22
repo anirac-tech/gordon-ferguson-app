@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:shimmer/shimmer.dart';
 
 class PostCell extends StatelessWidget {
   const PostCell(this.post, {this.onTap, this.routeName, super.key, this.color});
@@ -204,13 +205,45 @@ class PostCellLoading extends StatelessWidget {
       shadowColor: Colors.transparent,
       color: color,
       surfaceTintColor: (color == null) ? null : Colors.transparent,
-      child: SizedBox(
-        height: 200,
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey.shade200,
+        highlightColor: Colors.grey.shade100,
+        enabled: true,
         child: Container(
-          height: 50,
-          width: 50,
-          alignment: Alignment.center,
-          child: CircularProgressIndicator.adaptive(),
+          height: 150,
+          margin: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Container(
+                width: double.infinity,
+                height: 50.0,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12.0),
+                  color: Colors.white,
+                ),
+              ),
+              SizedBox(height: 16.0),
+              Container(
+                width: double.infinity,
+                height: 12.0,
+                color: Colors.white,
+                margin: const EdgeInsets.only(bottom: 8.0),
+              ),
+              Container(
+                width: double.infinity,
+                height: 12.0,
+                color: Colors.white,
+                margin: const EdgeInsets.only(bottom: 8.0),
+              ),
+              Container(
+                width: 200.0,
+                height: 12.0,
+                color: Colors.white,
+              ),
+            ],
+          ),
         ),
       ),
     );
