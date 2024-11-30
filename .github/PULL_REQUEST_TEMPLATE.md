@@ -8,16 +8,20 @@
 
 ## Description
 
-<!--- Describe your changes in detail -->
+<!--- Describe the purpose of the PR briefly -->
 
-## Type of Change
+## Changes
+
+<!-- Make a list of your changes here -->
+
+## Demo
+
+<!-- Upload a picture, video, or Loom link of changes here -->
+
+## Checklist
 
 <!--- Put an `x` in all the boxes that apply: -->
 
-- [ ] ✨ New feature (non-breaking change which adds functionality)
-- [ ] 🛠️ Bug fix (non-breaking change which fixes an issue)
-- [ ] ❌ Breaking change (fix or feature that would cause existing functionality to change)
-- [ ] 🧹 Code refactor
-- [ ] ✅ Build configuration change
-- [ ] 📝 Documentation
-- [ ] 🗑️ Chore
+- [ ] ✅ Ran tests locally
+- [ ] 🧹 Ran `dart format`
+- [ ] 📸 Uploaded a Video/Screenshot
