@@ -31,6 +31,9 @@ abstract class WordpressClient {
 
   @GET('/categories')
   Future<List<Category>> getCategories();
+
+  @GET('/posts/{id}')
+  Future<Post> getPost(@Path('id') int id);
 }
 
 //coverage:ignore-start
@@ -80,6 +83,15 @@ FutureOr<PostResponse> getPosts(
       orderBy: orderBy,
     ),
   );
+}
+
+@riverpod
+FutureOr<Post> getPost(
+  GetPostRef ref, {
+  required int id,
+}) async {
+  final client = ref.watch(wordpressClientProvider);
+  return await client.getPost(id);
 }
 
 @riverpod

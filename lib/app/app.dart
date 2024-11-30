@@ -1,3 +1,4 @@
+import 'package:gordon_ferguson_app/app/features/notifications/push_notifications.dart';
 import 'package:gordon_ferguson_app/app/features/theme_mode/theme_mode.dart';
 import 'package:gordon_ferguson_app/env/flavor.dart';
 import 'package:gordon_ferguson_app/app/config/router.dart';
@@ -14,6 +15,11 @@ class App extends ConsumerWidget {
     final theme = ref.watch(themeProvider);
     final themeMode = ref.watch(themeModeNotifierProvider);
     final appFlavor = getFlavor();
+    if (appFlavor == Flavor.prod) {
+      final notifications = ref.watch(pushNotificationsProvider.notifier);
+      notifications.initializePushNotifications();
+    }
+
     return MaterialApp.router(
       routerConfig: goRouter,
       theme: theme.lightPlatform,

@@ -1,0 +1,44 @@
+{
+    "flutter": {
+        "platforms": {
+            "android": {
+                "buildConfigurations": {
+                    "src/prod": {
+                        "projectId": "gordon-ferguson-teachings",
+                        "appId": "1:313327760906:android:dff41138955b822f4f91f3",
+                        "fileOutput": "android/app/src/prod/google-services.json"
+                    }
+                }
+            },
+            "ios": {
+                "buildConfigurations": {
+                    "Release-production": {
+                        "projectId": "gordon-ferguson-teachings",
+                        "appId": "1:313327760906:ios:023f439727e9062a4f91f3",
+                        "uploadDebugSymbols": true,
+                        "fileOutput": "ios/flavors/prod/GoogleService-Info.plist"
+                    }
+                }
+            },
+            "macos": {
+                "default": {
+                    "projectId": "gordon-ferguson-teachings",
+                    "appId": "1:313327760906:ios:f33ca70b24283cb64f91f3",
+                    "uploadDebugSymbols": true,
+                    "fileOutput": "macos/Runner/GoogleService-Info.plist"
+                }
+            },
+            "dart": {
+                "lib/firebase_options_prod.dart": {
+                    "projectId": "gordon-ferguson-teachings",
+                    "configurations": {
+                        "android": "1:313327760906:android:dff41138955b822f4f91f3",
+                        "ios": "1:313327760906:ios:023f439727e9062a4f91f3",
+                        "macos": "1:313327760906:ios:f33ca70b24283cb64f91f3",
+                        "web": "1:313327760906:web:801360285da2a5bd4f91f3"
+                    }
+                }
+            }
+        }
+    }
+}
