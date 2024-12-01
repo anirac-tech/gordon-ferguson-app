@@ -3,7 +3,6 @@ import 'package:gordon_ferguson_app/app/features/text_size/adjustable_text_widge
 import 'package:gordon_ferguson_app/app/shared/wpa_app_bar.dart';
 import 'package:gordon_ferguson_app/app/shared/error_snackbar_view.dart';
 import 'package:gordon_ferguson_app/app/shared/url_launcher.dart';
-import 'package:gordon_ferguson_app/app/shared/wpa_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -15,8 +14,7 @@ class AboutView extends HookConsumerWidget {
   static const path = '/about';
   static const name = 'about';
 
-  final String _imageUrl = '''
-https://gordonferguson.org/wp-content/uploads/2016/11/Final-Main-Header.jpg''';
+  final String _imageUrl = 'assets/images/Final-Main-Header.jpg';
 
   static const Map<String, String> urls = {
     "Website": "https://gordonferguson.org",
@@ -38,7 +36,10 @@ https://gordonferguson.org/wp-content/uploads/2016/11/Final-Main-Header.jpg''';
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              WpaImage(_imageUrl),
+              Image.asset(
+                _imageUrl,
+                errorBuilder: (_, __, ___) => const SizedBox(),
+              ),
               SizedBox(height: 8.0),
               AdjustableTextWidget(
                 child: Padding(

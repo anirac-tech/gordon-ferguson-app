@@ -17,10 +17,14 @@ class AsyncValueWidget<T> extends ConsumerWidget {
       error: (error, stackTrace) {
         log.e(error.toString(), error, stackTrace: stackTrace);
         return Center(
-          child: Text(error.toString(),
-              style: theme.textTheme.titleLarge?.copyWith(
-                color: theme.colorScheme.error,
-              )),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text("There was an error loading the content.",
+                textAlign: TextAlign.center,
+                style: theme.textTheme.titleSmall?.copyWith(
+                  color: theme.colorScheme.error,
+                )),
+          ),
         );
       },
     );
