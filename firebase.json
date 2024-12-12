@@ -3,10 +3,20 @@
         "platforms": {
             "android": {
                 "buildConfigurations": {
-                    "src/prod": {
+                    "src/production": {
                         "projectId": "gordon-ferguson-teachings",
                         "appId": "1:313327760906:android:dff41138955b822f4f91f3",
-                        "fileOutput": "android/app/src/prod/google-services.json"
+                        "fileOutput": "android/app/src/production/google-services.json"
+                    },
+                    "src/staging": {
+                        "projectId": "gordon-ferguson-teaching-dev",
+                        "appId": "1:63947124360:android:0e0dabe6936c851b99793d",
+                        "fileOutput": "android/app/src/staging/google-services.json"
+                    },
+                    "src/development": {
+                        "projectId": "gordon-ferguson-teaching-dev",
+                        "appId": "1:63947124360:android:61fe092e327ca3e599793d",
+                        "fileOutput": "android/app/src/development/google-services.json"
                     }
                 }
             },
@@ -15,8 +25,26 @@
                     "Release-production": {
                         "projectId": "gordon-ferguson-teachings",
                         "appId": "1:313327760906:ios:023f439727e9062a4f91f3",
+                        "uploadDebugSymbols": false,
+                        "fileOutput": "ios/flavors/production/GoogleService-Info.plist"
+                    },
+                    "Debug-staging": {
+                        "projectId": "gordon-ferguson-teaching-dev",
+                        "appId": "1:63947124360:ios:0d472c8ce261269d99793d",
                         "uploadDebugSymbols": true,
-                        "fileOutput": "ios/flavors/prod/GoogleService-Info.plist"
+                        "fileOutput": "ios/flavors/staging/GoogleService-Info.plist"
+                    },
+                    "Debug-development": {
+                        "projectId": "gordon-ferguson-teaching-dev",
+                        "appId": "1:63947124360:ios:89cc508aa18c753a99793d",
+                        "uploadDebugSymbols": true,
+                        "fileOutput": "ios/flavors/development/GoogleService-Info.plist"
+                    },
+                    "Debug-production": {
+                        "projectId": "gordon-ferguson-teachings",
+                        "appId": "1:313327760906:ios:023f439727e9062a4f91f3",
+                        "uploadDebugSymbols": false,
+                        "fileOutput": "ios/flavors/production/GoogleService-Info.plist"
                     }
                 }
             },
@@ -24,7 +52,7 @@
                 "default": {
                     "projectId": "gordon-ferguson-teachings",
                     "appId": "1:313327760906:ios:f33ca70b24283cb64f91f3",
-                    "uploadDebugSymbols": true,
+                    "uploadDebugSymbols": false,
                     "fileOutput": "macos/Runner/GoogleService-Info.plist"
                 }
             },
@@ -36,6 +64,24 @@
                         "ios": "1:313327760906:ios:023f439727e9062a4f91f3",
                         "macos": "1:313327760906:ios:f33ca70b24283cb64f91f3",
                         "web": "1:313327760906:web:801360285da2a5bd4f91f3"
+                    }
+                },
+                "lib/firebase_options_stg.dart": {
+                    "projectId": "gordon-ferguson-teaching-dev",
+                    "configurations": {
+                        "android": "1:63947124360:android:0e0dabe6936c851b99793d",
+                        "ios": "1:63947124360:ios:0d472c8ce261269d99793d",
+                        "macos": "1:63947124360:ios:71c36b9b60908d7299793d",
+                        "web": "1:63947124360:web:ae3f2e424a40c95499793d"
+                    }
+                },
+                "lib/firebase_options_dev.dart": {
+                    "projectId": "gordon-ferguson-teaching-dev",
+                    "configurations": {
+                        "android": "1:63947124360:android:61fe092e327ca3e599793d",
+                        "ios": "1:63947124360:ios:89cc508aa18c753a99793d",
+                        "macos": "1:63947124360:ios:71c36b9b60908d7299793d",
+                        "web": "1:63947124360:web:ae3f2e424a40c95499793d"
                     }
                 }
             }
