@@ -20,7 +20,7 @@ class WpaSettingsList extends StatelessWidget {
                 child: Row(
                   children: [
                     const Expanded(
-                      child: Text('Theme Mode'),
+                      child: Text('Dark Mode'),
                     ),
                     ThemeModeSwitch(),
                   ],
@@ -53,7 +53,7 @@ class WpaSettingsList extends StatelessWidget {
               title: Text('General'),
               tiles: <SettingsTile>[
                 SettingsTile(
-                  title: Text('Theme Mode'),
+                  title: Text('Dark Mode'),
                   trailing: Row(
                     children: [ThemeModeSwitch()],
                   ),
