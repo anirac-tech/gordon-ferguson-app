@@ -7,12 +7,14 @@ class WpaAppBar extends ConsumerWidget implements PreferredSizeWidget {
     this.actions,
     this.surfaceTintColor,
     this.height = kToolbarHeight,
+    this.bottom,
   });
 
   final Widget? title;
   final List<Widget>? actions;
   final Color? surfaceTintColor;
   final double height;
+  final PreferredSizeWidget? bottom;
 
   @override
   Size get preferredSize => Size.fromHeight(height);
@@ -23,5 +25,6 @@ class WpaAppBar extends ConsumerWidget implements PreferredSizeWidget {
         centerTitle: false,
         actions: actions,
         surfaceTintColor: surfaceTintColor,
+        bottom: bottom,
       );
 }

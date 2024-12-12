@@ -14,6 +14,7 @@ class App extends ConsumerWidget {
     final theme = ref.watch(themeProvider);
     final themeMode = ref.watch(themeModeNotifierProvider);
     final appFlavor = getFlavor();
+
     return MaterialApp.router(
       routerConfig: goRouter,
       theme: theme.lightPlatform,

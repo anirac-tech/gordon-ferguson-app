@@ -20,24 +20,23 @@ class PostsView extends HookWidget {
       appBar: WpaAppBar(
         title: const Text(BLOG_TITLE),
         actions: [SettingsIconButton()],
+        height: kToolbarHeight + kTextTabBarHeight,
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(kTextTabBarHeight),
+          child: WpaSearchBar(
+            onSubmit: (val) {
+              if (val.isEmpty) {
+                search.value = null;
+              } else if (search.value != val) {
+                search.value = val;
+              }
+            },
+          ),
+        ),
       ),
       body: Center(
-        child: Column(
-          children: [
-            WpaSearchBar(
-              onSubmit: (val) {
-                if (val.isEmpty) {
-                  search.value = null;
-                } else if (search.value != val) {
-                  search.value = val;
-                }
-              },
-            ),
-            Expanded(
-                child: PostStreamTableView(
-              search: search.value,
-            )),
-          ],
+        child: PostStreamTableView(
+          search: search.value,
         ),
       ),
     );

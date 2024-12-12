@@ -1,5 +1,8 @@
+import 'package:flutter/foundation.dart';
+import 'package:gordon_ferguson_app/app/features/notifications/push_notifications.dart';
 import 'package:gordon_ferguson_app/app/features/settings/data/shared_preferences.dart';
 import 'package:flutter/material.dart';
+import 'package:gordon_ferguson_app/env/flavor.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -11,6 +14,12 @@ Future<void> appStartup(AppStartupRef ref) async {
     ref.invalidate(sharedPreferencesProvider);
   });
   await ref.watch(sharedPreferencesProvider.future);
+  final flavor = getFlavor();
+
+  if (!kIsWeb && flavor == Flavor.prod) {
+    final notifications = ref.read(pushNotificationsProvider.notifier);
+    notifications.initializePushNotifications();
+  }
 }
 
 class AppStartupView extends ConsumerWidget {
