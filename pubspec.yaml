@@ -28,7 +28,7 @@ dependencies:
   logger: ^2.4.0
   path: 1.9.0
   path_provider: ^2.1.4
-  retrofit: 4.2.0
+  retrofit: 4.4.1
   riverpod_annotation: 3.0.0-dev.3
   settings_ui: 2.0.2
   share_plus: ^10.0.0
