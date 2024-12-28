@@ -8,14 +8,15 @@ import 'package:gordon_ferguson_app/app/config/router.dart';
 import 'package:gordon_ferguson_app/app/features/posts/data/wordpress_client.dart';
 import 'package:gordon_ferguson_app/app/features/posts/view/screens/post_detail_view.dart';
 import 'package:gordon_ferguson_app/app/features/settings/data/shared_preferences.dart';
+import 'package:gordon_ferguson_app/env/flavor.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:appwrite/appwrite.dart';
 
-part 'push_notifications.g.dart';
+part 'notifications_service.g.dart';
 
 @Riverpod(keepAlive: true)
-class PushNotifications extends _$PushNotifications {
+class NotificationsService extends _$NotificationsService {
   static const tokenKey = "notificationToken";
   static const deviceIdKey = "deviceId";
   static const projectId = '67424e230025790edf98';
@@ -24,7 +25,7 @@ class PushNotifications extends _$PushNotifications {
   static const topicId = "new_post";
 
   late final FirebaseMessaging firebaseMessaging;
-  late final SharedPreferences sharedPreferences;
+  late final SharedPreferencesWithCache sharedPreferences;
   final Client _appwriteClient = Client().setProject(projectId);
   String get deviceId => getDeviceId();
 
@@ -86,30 +87,35 @@ class PushNotifications extends _$PushNotifications {
                 : Platform.isAndroid
                     ? "android"
                     : "ios",
+            "flavor": getFlavor().name,
             "is_subscribed": true,
           },
         );
         sharedPreferences.setString(tokenKey, fcmToken);
-        state = fcmToken;
       } catch (e) {
-        Log.e("$e", e);
+        Log.e("Error storing token: $e", e);
+      } finally {
+        state = fcmToken;
       }
     }
   }
 
   Future<bool> _getTokenFromAppwrite() async {
     final Databases databases = Databases(_appwriteClient);
-    final Document document = await databases.getDocument(
-      databaseId: databaseId,
-      collectionId: collectionId,
-      documentId: deviceId,
-    );
-
-    if (document.data["token"] != null) {
-      final fcmToken = document.data["token"] as String;
-      sharedPreferences.setString(tokenKey, fcmToken);
-      state = fcmToken;
-      return true;
+    try {
+      final Document document = await databases.getDocument(
+        databaseId: databaseId,
+        collectionId: collectionId,
+        documentId: deviceId,
+      );
+      if (document.data["token"] != null) {
+        final fcmToken = document.data["token"] as String;
+        sharedPreferences.setString(tokenKey, fcmToken);
+        state = fcmToken;
+        return true;
+      }
+    } on AppwriteException catch (e) {
+      Log.e("Error getting document from appwrite: $e", e);
     }
 
     return false;
@@ -162,7 +168,7 @@ class PushNotifications extends _$PushNotifications {
         goRouter.pushNamed(PostDetailView.name, extra: post);
       }
     } catch (e) {
-      Log.e("$e", e);
+      Log.e("Error handling notification: $e", e);
     }
   }
 }

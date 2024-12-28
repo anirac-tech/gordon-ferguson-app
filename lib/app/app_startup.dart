@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:gordon_ferguson_app/app/features/notifications/push_notifications.dart';
+import 'package:gordon_ferguson_app/app/features/notifications/notifications_service.dart';
 import 'package:gordon_ferguson_app/app/features/settings/data/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:gordon_ferguson_app/env/flavor.dart';
@@ -17,7 +17,7 @@ Future<void> appStartup(AppStartupRef ref) async {
   final flavor = getFlavor();
 
   if (!kIsWeb && flavor == Flavor.prod) {
-    final notifications = ref.read(pushNotificationsProvider.notifier);
+    final notifications = ref.read(notificationsServiceProvider.notifier);
     notifications.initializePushNotifications();
   }
 }

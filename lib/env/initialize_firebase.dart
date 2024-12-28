@@ -1,5 +1,4 @@
 // import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:flutter/foundation.dart';
 import 'package:gordon_ferguson_app/app/config/logger.dart';
 import 'package:gordon_ferguson_app/env/flavor.dart';
 // import 'package:firebase_analytics/firebase_analytics.dart';
