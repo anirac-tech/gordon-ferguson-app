@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class MockPostClient extends Mock implements WordpressClient {}
 
-class MockSharedPreferences extends Mock implements SharedPreferences {
+class MockSharedPreferences extends Mock implements SharedPreferencesWithCache {
   final Map<String, double?> data = Map<String, double?>();
 
   @override
