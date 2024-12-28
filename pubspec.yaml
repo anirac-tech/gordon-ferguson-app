@@ -1,6 +1,6 @@
 name: gordon_ferguson_app
 description: Mobile-friendly front end for Gordon Ferguson's Teaching App
-version: 1.1.1+1101
+version: 1.2.0
 publish_to: none
 
 environment:
