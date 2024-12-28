@@ -1,5 +1,7 @@
 import 'package:gordon_ferguson_app/app/app_startup.dart';
 import 'package:gordon_ferguson_app/app/features/about/view/about_view.dart';
+import 'package:gordon_ferguson_app/app/features/onboarding/onboarding_repository.dart';
+import 'package:gordon_ferguson_app/app/features/onboarding/onboarding_view.dart';
 import 'package:gordon_ferguson_app/app/features/posts/view/screens/categories_view.dart';
 import 'package:gordon_ferguson_app/app/shared/home_screen.dart';
 import 'package:gordon_ferguson_app/app/features/posts/domain/post.dart';
@@ -36,6 +38,11 @@ GoRouter goRouter(GoRouterRef ref) {
       }
 
       final path = state.uri.path;
+
+      final isOnboarded = ref.read(onboardingRepositoryProvider).getOnboarded();
+      if (!isOnboarded) {
+        return OnboardingView.path;
+      }
 
       if (path.startsWith(AppStartupView.path)) {
         return PostsView.path;
