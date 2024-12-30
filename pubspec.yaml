@@ -35,7 +35,7 @@ dependencies:
   shared_preferences: ^2.3.2
   shimmer: ^3.0.0
   sqlite3_flutter_libs: 0.5.28
-  url_launcher: 6.3.0
+  url_launcher: 6.3.1
   
 dev_dependencies:
   build_runner: 2.4.12
