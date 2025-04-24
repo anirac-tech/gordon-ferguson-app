@@ -49,7 +49,7 @@ dev_dependencies:
   mocktail: 1.0.4
   retrofit_generator: ^8.2.0
   riverpod_generator: 3.0.0-dev.11
-  very_good_analysis: 6.0.0
+  very_good_analysis: 7.0.0
 
 flutter:
   uses-material-design: true
