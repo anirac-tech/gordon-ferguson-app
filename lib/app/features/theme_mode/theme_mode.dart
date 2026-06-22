@@ -6,12 +6,12 @@ part 'theme_mode.g.dart';
 
 @riverpod
 class ThemeModeNotifier extends _$ThemeModeNotifier {
-  static const themeModeKey = "themeMode";
+  static const themeModeKey = 'themeMode';
 
   @override
   ThemeMode build() {
     final prefs = ref.watch(sharedPreferencesProvider);
-    return (prefs.valueOrNull?.getBool(themeModeKey) ?? true) ? ThemeMode.light : ThemeMode.dark;
+    return (prefs.value?.getBool(themeModeKey) ?? true) ? ThemeMode.light : ThemeMode.dark;
   }
 
   Future<void> _save() async {

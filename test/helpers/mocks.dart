@@ -8,7 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class MockPostClient extends Mock implements WordpressClient {}
 
 class MockSharedPreferences extends Mock implements SharedPreferencesWithCache {
-  final Map<String, double?> data = Map<String, double?>();
+  final Map<String, double?> data = <String, double?>{};
 
   @override
   double? getDouble(String key) {
@@ -23,14 +23,13 @@ class MockSharedPreferences extends Mock implements SharedPreferencesWithCache {
 }
 
 class MockDatabase extends Mock implements WpaDatabase {
-  final List<FavoritePost> favorites = List.empty(growable: true);
-  final StreamController<List<FavoritePost>> favoritesController =
-      StreamController<List<FavoritePost>>();
-
   MockDatabase() {
     favorites.clear();
     favoritesController.add(favorites);
   }
+  final List<FavoritePost> favorites = List.empty(growable: true);
+  final StreamController<List<FavoritePost>> favoritesController =
+      StreamController<List<FavoritePost>>();
 
   @override
   Stream<List<FavoritePost>> watchPosts() => favoritesController.stream;

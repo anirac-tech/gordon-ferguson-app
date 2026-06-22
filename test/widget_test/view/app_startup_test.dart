@@ -1,6 +1,6 @@
+import 'package:flutter_test/flutter_test.dart';
 import 'package:gordon_ferguson_app/app/app.dart';
 import 'package:gordon_ferguson_app/app/app_startup.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final Exception _exception = Exception('App failed to load');
@@ -10,9 +10,7 @@ void main() {
       // Load app widget.
       await tester.pumpWidget(
         ProviderScope(
-          overrides: [
-            appStartupProvider.overrideWith((ref) => throw (_exception)),
-          ],
+          overrides: [appStartupProvider.overrideWith((ref) => throw _exception)],
           child: const App(),
         ),
       );

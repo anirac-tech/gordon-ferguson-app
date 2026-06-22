@@ -7,24 +7,16 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'theme.g.dart';
 
 class WpaTheme {
-  const WpaTheme({
-    required this.platform,
-  });
+  const WpaTheme({required this.platform});
 
   final TargetPlatform platform;
 
   static final light = ThemeData.light().copyWith(
-    colorScheme: ColorScheme.fromSeed(
-      brightness: Brightness.light,
-      seedColor: Colors.lightBlue,
-    ),
+    colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightBlue),
   );
 
   static final dark = ThemeData.dark().copyWith(
-    colorScheme: ColorScheme.fromSeed(
-      brightness: Brightness.dark,
-      seedColor: Colors.lightBlue,
-    ),
+    colorScheme: ColorScheme.fromSeed(brightness: Brightness.dark, seedColor: Colors.lightBlue),
   );
 
   ThemeData get lightPlatform => light.copyWith(platform: platform);
@@ -33,11 +25,11 @@ class WpaTheme {
 }
 
 @Riverpod(keepAlive: true)
-WpaTheme theme(ThemeRef ref) {
+WpaTheme theme(Ref ref) {
   final platform = kIsWeb
       ? TargetPlatform.android
       : Platform.isIOS
-          ? TargetPlatform.iOS
-          : TargetPlatform.android;
+      ? TargetPlatform.iOS
+      : TargetPlatform.android;
   return WpaTheme(platform: platform);
 }

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class WpaAppBar extends ConsumerWidget implements PreferredSizeWidget {
-  WpaAppBar({
+  const WpaAppBar({
+    super.key,
     this.title,
     this.actions,
     this.surfaceTintColor,
@@ -21,10 +22,10 @@ class WpaAppBar extends ConsumerWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) => AppBar(
-        title: title,
-        centerTitle: false,
-        actions: actions,
-        surfaceTintColor: surfaceTintColor,
-        bottom: bottom,
-      );
+    title: title,
+    centerTitle: false,
+    actions: actions,
+    surfaceTintColor: surfaceTintColor,
+    bottom: bottom,
+  );
 }

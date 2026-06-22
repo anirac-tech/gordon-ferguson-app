@@ -6,36 +6,91 @@ part of 'favorites_repository.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$favoritesRepositoryHash() =>
-    r'1baa7d326949f42d7745009ac83fe3d507e1f9a4';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [favoritesRepository].
 @ProviderFor(favoritesRepository)
-final favoritesRepositoryProvider =
-    AutoDisposeProvider<FavoritesRepository>.internal(
-  favoritesRepository,
-  name: r'favoritesRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$favoritesRepositoryHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+final favoritesRepositoryProvider = FavoritesRepositoryProvider._();
 
-typedef FavoritesRepositoryRef = AutoDisposeProviderRef<FavoritesRepository>;
-String _$favoriteListHash() => r'8e35c8ef83701ae6ccbd60442aaa031ede07af45';
+final class FavoritesRepositoryProvider
+    extends
+        $FunctionalProvider<
+          FavoritesRepository,
+          FavoritesRepository,
+          FavoritesRepository
+        >
+    with $Provider<FavoritesRepository> {
+  FavoritesRepositoryProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'favoritesRepositoryProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
-/// See also [favoriteList].
+  @override
+  String debugGetCreateSourceHash() => _$favoritesRepositoryHash();
+
+  @$internal
+  @override
+  $ProviderElement<FavoritesRepository> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  FavoritesRepository create(Ref ref) {
+    return favoritesRepository(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(FavoritesRepository value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<FavoritesRepository>(value),
+    );
+  }
+}
+
+String _$favoritesRepositoryHash() =>
+    r'aa6dedddf854e56d8ea991052db4af1efc956c76';
+
 @ProviderFor(favoriteList)
-final favoriteListProvider = StreamProvider<List<Post>>.internal(
-  favoriteList,
-  name: r'favoriteListProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$favoriteListHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+final favoriteListProvider = FavoriteListProvider._();
 
-typedef FavoriteListRef = StreamProviderRef<List<Post>>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, inference_failure_on_uninitialized_variable, inference_failure_on_function_return_type, inference_failure_on_untyped_parameter, deprecated_member_use_from_same_package
+final class FavoriteListProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<List<Post>>,
+          List<Post>,
+          Stream<List<Post>>
+        >
+    with $FutureModifier<List<Post>>, $StreamProvider<List<Post>> {
+  FavoriteListProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'favoriteListProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$favoriteListHash();
+
+  @$internal
+  @override
+  $StreamProviderElement<List<Post>> $createElement($ProviderPointer pointer) =>
+      $StreamProviderElement(pointer);
+
+  @override
+  Stream<List<Post>> create(Ref ref) {
+    return favoriteList(ref);
+  }
+}
+
+String _$favoriteListHash() => r'497a4d869517587eec431d1c5f5d07a64d0b5fe6';

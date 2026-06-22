@@ -6,19 +6,46 @@ part of 'theme.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$themeHash() => r'451ca9b444472b94d6248349ea0de23f71427208';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [theme].
 @ProviderFor(theme)
-final themeProvider = Provider<WpaTheme>.internal(
-  theme,
-  name: r'themeProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$themeHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+final themeProvider = ThemeProvider._();
 
-typedef ThemeRef = ProviderRef<WpaTheme>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, inference_failure_on_uninitialized_variable, inference_failure_on_function_return_type, inference_failure_on_untyped_parameter, deprecated_member_use_from_same_package
+final class ThemeProvider
+    extends $FunctionalProvider<WpaTheme, WpaTheme, WpaTheme>
+    with $Provider<WpaTheme> {
+  ThemeProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'themeProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$themeHash();
+
+  @$internal
+  @override
+  $ProviderElement<WpaTheme> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  WpaTheme create(Ref ref) {
+    return theme(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(WpaTheme value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<WpaTheme>(value),
+    );
+  }
+}
+
+String _$themeHash() => r'222803f91512e5cc48218ce0717629797d30df20';

@@ -6,22 +6,58 @@ part of 'text_size_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+
+@ProviderFor(TextSizeController)
+final textSizeControllerProvider = TextSizeControllerProvider._();
+
+final class TextSizeControllerProvider
+    extends $NotifierProvider<TextSizeController, double> {
+  TextSizeControllerProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'textSizeControllerProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$textSizeControllerHash();
+
+  @$internal
+  @override
+  TextSizeController create() => TextSizeController();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(double value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<double>(value),
+    );
+  }
+}
+
 String _$textSizeControllerHash() =>
     r'b7616130f3b70f8071e38d4bf32c0e7d71b73a14';
 
-/// See also [TextSizeController].
-@ProviderFor(TextSizeController)
-final textSizeControllerProvider =
-    NotifierProvider<TextSizeController, double>.internal(
-  TextSizeController.new,
-  name: r'textSizeControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$textSizeControllerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$TextSizeController = Notifier<double>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, inference_failure_on_uninitialized_variable, inference_failure_on_function_return_type, inference_failure_on_untyped_parameter, deprecated_member_use_from_same_package
+abstract class _$TextSizeController extends $Notifier<double> {
+  double build();
+  @$mustCallSuper
+  @override
+  WhenComplete runBuild() {
+    final ref = this.ref as $Ref<double, double>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<double, double>,
+              double,
+              Object?,
+              Object?
+            >;
+    return element.handleCreate(ref, build);
+  }
+}

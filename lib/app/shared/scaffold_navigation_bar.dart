@@ -1,12 +1,12 @@
-import 'package:gordon_ferguson_app/app/shared/navigation_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:gordon_ferguson_app/app/shared/navigation_icons.dart';
 
 class ScaffoldWithNavigationBar extends StatelessWidget {
   const ScaffoldWithNavigationBar({
-    super.key,
     required this.body,
     required this.selectedIndex,
     required this.onDestinationSelected,
+    super.key,
   });
   final Widget body;
   final int selectedIndex;

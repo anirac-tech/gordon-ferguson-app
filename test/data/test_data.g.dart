@@ -12,7 +12,7 @@ final _$postDataJsonLiteral = [
     'title': {'rendered': 'My New Blog'},
     'content': {
       'rendered':
-          'Hello, and welcome to my new blog! In this blog I write about all sorts of things'
+          'Hello, and welcome to my new blog! In this blog I write about all sorts of things',
     },
     'excerpt': {'rendered': 'Hello, and welcome to my new blog[...]'},
     'date': '2023-11-06T22:21:04',
@@ -47,7 +47,7 @@ final _$postDataJsonLiteral = [
                 'filesize': 13153,
                 'mime_type': 'image/jpeg',
                 'source_url':
-                    'https://wordpress.com/wp-content/uploads/2024/9/First-Blog-275x300.jpg'
+                    'https://wordpress.com/wp-content/uploads/2024/9/First-Blog-275x300.jpg',
               },
               'thumbnail': {
                 'file': 'Different-Worlds-150x150.jpg',
@@ -56,40 +56,43 @@ final _$postDataJsonLiteral = [
                 'filesize': 4551,
                 'mime_type': 'image/jpeg',
                 'source_url':
-                    'https://wordpress.com/wp-content/uploads/2024/9/First-Blog-150x150.jpg'
-              }
+                    'https://wordpress.com/wp-content/uploads/2024/9/First-Blog-150x150.jpg',
+              },
             },
             '_links': {
               'self': [
-                {'href': 'https://wordpress.com/wp-json/wp/v2/media/2'}
+                {'href': 'https://wordpress.com/wp-json/wp/v2/media/2'},
               ],
               'collection': [
-                {'href': 'https://wordpress.com/wp-json/wp/v2/media'}
+                {'href': 'https://wordpress.com/wp-json/wp/v2/media'},
               ],
               'about': [
-                {'href': 'https://wordpress.com/wp-json/wp/v2/types/attachment'}
+                {
+                  'href':
+                      'https://wordpress.com/wp-json/wp/v2/types/attachment',
+                },
               ],
               'author': [
                 {
                   'embeddable': true,
-                  'href': 'https://wordpress.com/wp-json/wp/v2/users/2'
-                }
-              ]
-            }
-          }
-        }
-      ]
-    }
+                  'href': 'https://wordpress.com/wp-json/wp/v2/users/2',
+                },
+              ],
+            },
+          },
+        },
+      ],
+    },
   },
   {
     'id': 2,
     'title': {'rendered': 'My Second Post'},
     'content': {
       'rendered':
-          'My posts have been really popular, but I have been thinking of taking a break.'
+          'My posts have been really popular, but I have been thinking of taking a break.',
     },
     'excerpt': {'rendered': 'My posts have been really popular[...]'},
     'date': '2022-11-08T22:21:04',
-    'link': 'https://www.wordpress.com'
-  }
+    'link': 'https://www.wordpress.com',
+  },
 ];

@@ -6,19 +6,46 @@ part of 'log_manager.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$logManagerHash() => r'6fd16091494b58f1d66f8069ba31abf171d9b5c2';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [logManager].
 @ProviderFor(logManager)
-final logManagerProvider = Provider<LogManager>.internal(
-  logManager,
-  name: r'logManagerProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$logManagerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+final logManagerProvider = LogManagerProvider._();
 
-typedef LogManagerRef = ProviderRef<LogManager>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, inference_failure_on_uninitialized_variable, inference_failure_on_function_return_type, inference_failure_on_untyped_parameter, deprecated_member_use_from_same_package
+final class LogManagerProvider
+    extends $FunctionalProvider<LogManager, LogManager, LogManager>
+    with $Provider<LogManager> {
+  LogManagerProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'logManagerProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$logManagerHash();
+
+  @$internal
+  @override
+  $ProviderElement<LogManager> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  LogManager create(Ref ref) {
+    return logManager(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(LogManager value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<LogManager>(value),
+    );
+  }
+}
+
+String _$logManagerHash() => r'86dd86831d24719ff55278b6337b77d3f7accaa5';

@@ -12,20 +12,26 @@ class $FavoritePostsTable extends FavoritePosts
   static const VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<int> id = GeneratedColumn<int>(
-      'id', aliasedName, false,
-      hasAutoIncrement: true,
-      type: DriftSqlType.int,
-      requiredDuringInsert: false,
-      defaultConstraints:
-          GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
-  static const VerificationMeta _postMeta = const VerificationMeta('post');
+    'id',
+    aliasedName,
+    false,
+    hasAutoIncrement: true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'PRIMARY KEY AUTOINCREMENT',
+    ),
+  );
   @override
   late final GeneratedColumnWithTypeConverter<Post, String> post =
-      GeneratedColumn<String>('post', aliasedName, false,
-              type: DriftSqlType.string,
-              requiredDuringInsert: true,
-              defaultConstraints: GeneratedColumn.constraintIsAlways('UNIQUE'))
-          .withConverter<Post>($FavoritePostsTable.$converterpost);
+      GeneratedColumn<String>(
+        'post',
+        aliasedName,
+        false,
+        type: DriftSqlType.string,
+        requiredDuringInsert: true,
+        defaultConstraints: GeneratedColumn.constraintIsAlways('UNIQUE'),
+      ).withConverter<Post>($FavoritePostsTable.$converterpost);
   @override
   List<GeneratedColumn> get $columns => [id, post];
   @override
@@ -34,14 +40,15 @@ class $FavoritePostsTable extends FavoritePosts
   String get actualTableName => $name;
   static const String $name = 'favorite_posts';
   @override
-  VerificationContext validateIntegrity(Insertable<FavoritePost> instance,
-      {bool isInserting = false}) {
+  VerificationContext validateIntegrity(
+    Insertable<FavoritePost> instance, {
+    bool isInserting = false,
+  }) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
     if (data.containsKey('id')) {
       context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
     }
-    context.handle(_postMeta, const VerificationResult.success());
     return context;
   }
 
@@ -51,11 +58,16 @@ class $FavoritePostsTable extends FavoritePosts
   FavoritePost map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return FavoritePost(
-      id: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
-      post: $FavoritePostsTable.$converterpost.fromSql(attachedDatabase
-          .typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}post'])!),
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
+      post: $FavoritePostsTable.$converterpost.fromSql(
+        attachedDatabase.typeMapping.read(
+          DriftSqlType.string,
+          data['${effectivePrefix}post'],
+        )!,
+      ),
     );
   }
 
@@ -76,21 +88,21 @@ class FavoritePost extends DataClass implements Insertable<FavoritePost> {
     final map = <String, Expression>{};
     map['id'] = Variable<int>(id);
     {
-      map['post'] =
-          Variable<String>($FavoritePostsTable.$converterpost.toSql(post));
+      map['post'] = Variable<String>(
+        $FavoritePostsTable.$converterpost.toSql(post),
+      );
     }
     return map;
   }
 
   FavoritePostsCompanion toCompanion(bool nullToAbsent) {
-    return FavoritePostsCompanion(
-      id: Value(id),
-      post: Value(post),
-    );
+    return FavoritePostsCompanion(id: Value(id), post: Value(post));
   }
 
-  factory FavoritePost.fromJson(Map<String, dynamic> json,
-      {ValueSerializer? serializer}) {
+  factory FavoritePost.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return FavoritePost(
       id: serializer.fromJson<int>(json['id']),
@@ -106,10 +118,8 @@ class FavoritePost extends DataClass implements Insertable<FavoritePost> {
     };
   }
 
-  FavoritePost copyWith({int? id, Post? post}) => FavoritePost(
-        id: id ?? this.id,
-        post: post ?? this.post,
-      );
+  FavoritePost copyWith({int? id, Post? post}) =>
+      FavoritePost(id: id ?? this.id, post: post ?? this.post);
   FavoritePost copyWithCompanion(FavoritePostsCompanion data) {
     return FavoritePost(
       id: data.id.present ? data.id.value : this.id,
@@ -156,10 +166,7 @@ class FavoritePostsCompanion extends UpdateCompanion<FavoritePost> {
   }
 
   FavoritePostsCompanion copyWith({Value<int>? id, Value<Post>? post}) {
-    return FavoritePostsCompanion(
-      id: id ?? this.id,
-      post: post ?? this.post,
-    );
+    return FavoritePostsCompanion(id: id ?? this.id, post: post ?? this.post);
   }
 
   @override
@@ -170,7 +177,8 @@ class FavoritePostsCompanion extends UpdateCompanion<FavoritePost> {
     }
     if (post.present) {
       map['post'] = Variable<String>(
-          $FavoritePostsTable.$converterpost.toSql(post.value));
+        $FavoritePostsTable.$converterpost.toSql(post.value),
+      );
     }
     return map;
   }
@@ -196,81 +204,130 @@ abstract class _$WpaDatabase extends GeneratedDatabase {
   List<DatabaseSchemaEntity> get allSchemaEntities => [favoritePosts];
 }
 
-typedef $$FavoritePostsTableCreateCompanionBuilder = FavoritePostsCompanion
-    Function({
-  Value<int> id,
-  required Post post,
-});
-typedef $$FavoritePostsTableUpdateCompanionBuilder = FavoritePostsCompanion
-    Function({
-  Value<int> id,
-  Value<Post> post,
-});
-
-class $$FavoritePostsTableTableManager extends RootTableManager<
-    _$WpaDatabase,
-    $FavoritePostsTable,
-    FavoritePost,
-    $$FavoritePostsTableFilterComposer,
-    $$FavoritePostsTableOrderingComposer,
-    $$FavoritePostsTableCreateCompanionBuilder,
-    $$FavoritePostsTableUpdateCompanionBuilder> {
-  $$FavoritePostsTableTableManager(_$WpaDatabase db, $FavoritePostsTable table)
-      : super(TableManagerState(
-          db: db,
-          table: table,
-          filteringComposer:
-              $$FavoritePostsTableFilterComposer(ComposerState(db, table)),
-          orderingComposer:
-              $$FavoritePostsTableOrderingComposer(ComposerState(db, table)),
-          updateCompanionCallback: ({
-            Value<int> id = const Value.absent(),
-            Value<Post> post = const Value.absent(),
-          }) =>
-              FavoritePostsCompanion(
-            id: id,
-            post: post,
-          ),
-          createCompanionCallback: ({
-            Value<int> id = const Value.absent(),
-            required Post post,
-          }) =>
-              FavoritePostsCompanion.insert(
-            id: id,
-            post: post,
-          ),
-        ));
-}
+typedef $$FavoritePostsTableCreateCompanionBuilder =
+    FavoritePostsCompanion Function({Value<int> id, required Post post});
+typedef $$FavoritePostsTableUpdateCompanionBuilder =
+    FavoritePostsCompanion Function({Value<int> id, Value<Post> post});
 
 class $$FavoritePostsTableFilterComposer
-    extends FilterComposer<_$WpaDatabase, $FavoritePostsTable> {
-  $$FavoritePostsTableFilterComposer(super.$state);
-  ColumnFilters<int> get id => $state.composableBuilder(
-      column: $state.table.id,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
+    extends Composer<_$WpaDatabase, $FavoritePostsTable> {
+  $$FavoritePostsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnWithTypeConverterFilters<Post, Post, String> get post =>
-      $state.composableBuilder(
-          column: $state.table.post,
-          builder: (column, joinBuilders) => ColumnWithTypeConverterFilters(
-              column,
-              joinBuilders: joinBuilders));
+      $composableBuilder(
+        column: $table.post,
+        builder: (column) => ColumnWithTypeConverterFilters(column),
+      );
 }
 
 class $$FavoritePostsTableOrderingComposer
-    extends OrderingComposer<_$WpaDatabase, $FavoritePostsTable> {
-  $$FavoritePostsTableOrderingComposer(super.$state);
-  ColumnOrderings<int> get id => $state.composableBuilder(
-      column: $state.table.id,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+    extends Composer<_$WpaDatabase, $FavoritePostsTable> {
+  $$FavoritePostsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
 
-  ColumnOrderings<String> get post => $state.composableBuilder(
-      column: $state.table.post,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+  ColumnOrderings<String> get post => $composableBuilder(
+    column: $table.post,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
+
+class $$FavoritePostsTableAnnotationComposer
+    extends Composer<_$WpaDatabase, $FavoritePostsTable> {
+  $$FavoritePostsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumnWithTypeConverter<Post, String> get post =>
+      $composableBuilder(column: $table.post, builder: (column) => column);
+}
+
+class $$FavoritePostsTableTableManager
+    extends
+        RootTableManager<
+          _$WpaDatabase,
+          $FavoritePostsTable,
+          FavoritePost,
+          $$FavoritePostsTableFilterComposer,
+          $$FavoritePostsTableOrderingComposer,
+          $$FavoritePostsTableAnnotationComposer,
+          $$FavoritePostsTableCreateCompanionBuilder,
+          $$FavoritePostsTableUpdateCompanionBuilder,
+          (
+            FavoritePost,
+            BaseReferences<_$WpaDatabase, $FavoritePostsTable, FavoritePost>,
+          ),
+          FavoritePost,
+          PrefetchHooks Function()
+        > {
+  $$FavoritePostsTableTableManager(_$WpaDatabase db, $FavoritePostsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$FavoritePostsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$FavoritePostsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$FavoritePostsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                Value<Post> post = const Value.absent(),
+              }) => FavoritePostsCompanion(id: id, post: post),
+          createCompanionCallback:
+              ({Value<int> id = const Value.absent(), required Post post}) =>
+                  FavoritePostsCompanion.insert(id: id, post: post),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$FavoritePostsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$WpaDatabase,
+      $FavoritePostsTable,
+      FavoritePost,
+      $$FavoritePostsTableFilterComposer,
+      $$FavoritePostsTableOrderingComposer,
+      $$FavoritePostsTableAnnotationComposer,
+      $$FavoritePostsTableCreateCompanionBuilder,
+      $$FavoritePostsTableUpdateCompanionBuilder,
+      (
+        FavoritePost,
+        BaseReferences<_$WpaDatabase, $FavoritePostsTable, FavoritePost>,
+      ),
+      FavoritePost,
+      PrefetchHooks Function()
+    >;
 
 class $WpaDatabaseManager {
   final _$WpaDatabase _db;
@@ -283,19 +340,46 @@ class $WpaDatabaseManager {
 // RiverpodGenerator
 // **************************************************************************
 
-String _$databaseHash() => r'f58931026859955ce6c44d9cd5744ae8a8cce998';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [database].
 @ProviderFor(database)
-final databaseProvider = Provider<WpaDatabase>.internal(
-  database,
-  name: r'databaseProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$databaseHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+final databaseProvider = DatabaseProvider._();
 
-typedef DatabaseRef = ProviderRef<WpaDatabase>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, inference_failure_on_uninitialized_variable, inference_failure_on_function_return_type, inference_failure_on_untyped_parameter, deprecated_member_use_from_same_package
+final class DatabaseProvider
+    extends $FunctionalProvider<WpaDatabase, WpaDatabase, WpaDatabase>
+    with $Provider<WpaDatabase> {
+  DatabaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'databaseProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$databaseHash();
+
+  @$internal
+  @override
+  $ProviderElement<WpaDatabase> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  WpaDatabase create(Ref ref) {
+    return database(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(WpaDatabase value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<WpaDatabase>(value),
+    );
+  }
+}
+
+String _$databaseHash() => r'b604570d2e72f1303803157a930c90c44d3a0a93';

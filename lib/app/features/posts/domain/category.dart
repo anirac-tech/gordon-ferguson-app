@@ -4,9 +4,7 @@ part 'category.freezed.dart';
 part 'category.g.dart';
 
 @freezed
-class Category with _$Category {
-  const Category._();
-
+abstract class Category with _$Category {
   const factory Category({
     required int id,
     required int count,
@@ -19,12 +17,13 @@ class Category with _$Category {
     required List<dynamic> meta,
     Links? links,
   }) = _Category;
+  const Category._();
 
   factory Category.fromJson(Map<String, dynamic> json) => _$CategoryFromJson(json);
 }
 
 @freezed
-class Links with _$Links {
+abstract class Links with _$Links {
   const factory Links({
     required List<Self> self,
     required List<About> collection,
@@ -37,40 +36,29 @@ class Links with _$Links {
 }
 
 @freezed
-class About with _$About {
-  const factory About({
-    required String href,
-  }) = _About;
+abstract class About with _$About {
+  const factory About({required String href}) = _About;
 
   factory About.fromJson(Map<String, dynamic> json) => _$AboutFromJson(json);
 }
 
 @freezed
-class Cury with _$Cury {
-  const factory Cury({
-    required String name,
-    required String href,
-    required bool templated,
-  }) = _Cury;
+abstract class Cury with _$Cury {
+  const factory Cury({required String name, required String href, required bool templated}) = _Cury;
 
   factory Cury.fromJson(Map<String, dynamic> json) => _$CuryFromJson(json);
 }
 
 @freezed
-class Self with _$Self {
-  const factory Self({
-    required String href,
-    required TargetHints targetHints,
-  }) = _Self;
+abstract class Self with _$Self {
+  const factory Self({required String href, required TargetHints targetHints}) = _Self;
 
   factory Self.fromJson(Map<String, dynamic> json) => _$SelfFromJson(json);
 }
 
 @freezed
-class TargetHints with _$TargetHints {
-  const factory TargetHints({
-    required List<String> allow,
-  }) = _TargetHints;
+abstract class TargetHints with _$TargetHints {
+  const factory TargetHints({required List<String> allow}) = _TargetHints;
 
   factory TargetHints.fromJson(Map<String, dynamic> json) => _$TargetHintsFromJson(json);
 }

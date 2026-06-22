@@ -11,13 +11,8 @@ class CategoriesView extends StatelessWidget {
   static const name = 'categories';
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: WpaAppBar(
-          title: const Text("Categories"),
-          actions: [SettingsIconButton()],
-        ),
-        body: Center(
-          child: CategoriesListView(),
-        ),
-      );
+  Widget build(BuildContext context) => const Scaffold(
+    appBar: WpaAppBar(title: Text('Categories'), actions: [SettingsIconButton()]),
+    body: Center(child: CategoriesListView()),
+  );
 }

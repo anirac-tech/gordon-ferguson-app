@@ -2,18 +2,16 @@
 
 part of 'wordpress_client.dart';
 
+// dart format off
+
 // **************************************************************************
 // RetrofitGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element
+// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter,avoid_unused_constructor_parameters,unreachable_from_main,avoid_redundant_argument_values
 
 class _WordpressClient implements WordpressClient {
-  _WordpressClient(
-    this._dio, {
-    this.baseUrl,
-    this.errorLogger,
-  }) {
+  _WordpressClient(this._dio, {this.baseUrl, this.errorLogger}) {
     baseUrl ??= 'https://gordonferguson.org//wp-json/wp/v2/';
   }
 
@@ -47,23 +45,17 @@ class _WordpressClient implements WordpressClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<HttpResponse<List<Post>>>(Options(
-      method: 'GET',
-      headers: _headers,
-      extra: _extra,
-    )
-        .compose(
-          _dio.options,
-          '/posts',
-          queryParameters: queryParameters,
-          data: _data,
-          cancelToken: cancelToken,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        )));
+    final _options = _setStreamType<HttpResponse<List<Post>>>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/posts',
+            queryParameters: queryParameters,
+            data: _data,
+            cancelToken: cancelToken,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
     final _result = await _dio.fetch<List<dynamic>>(_options);
     late List<Post> _value;
     try {
@@ -71,7 +63,7 @@ class _WordpressClient implements WordpressClient {
           .map((dynamic i) => Post.fromJson(i as Map<String, dynamic>))
           .toList();
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     final httpResponse = HttpResponse(_value, _result);
@@ -84,22 +76,16 @@ class _WordpressClient implements WordpressClient {
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<List<Category>>(Options(
-      method: 'GET',
-      headers: _headers,
-      extra: _extra,
-    )
-        .compose(
-          _dio.options,
-          '/categories',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        )));
+    final _options = _setStreamType<List<Category>>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/categories',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
     final _result = await _dio.fetch<List<dynamic>>(_options);
     late List<Category> _value;
     try {
@@ -107,7 +93,7 @@ class _WordpressClient implements WordpressClient {
           .map((dynamic i) => Category.fromJson(i as Map<String, dynamic>))
           .toList();
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     return _value;
@@ -119,28 +105,22 @@ class _WordpressClient implements WordpressClient {
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<Post>(Options(
-      method: 'GET',
-      headers: _headers,
-      extra: _extra,
-    )
-        .compose(
-          _dio.options,
-          '/posts/${id}',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        )));
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    final _options = _setStreamType<Post>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/posts/${id}',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, Object?>>(_options);
     late Post _value;
     try {
       _value = Post.fromJson(_result.data!);
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     return _value;
@@ -159,10 +139,7 @@ class _WordpressClient implements WordpressClient {
     return requestOptions;
   }
 
-  String _combineBaseUrls(
-    String dioBaseUrl,
-    String? baseUrl,
-  ) {
+  String _combineBaseUrls(String dioBaseUrl, String? baseUrl) {
     if (baseUrl == null || baseUrl.trim().isEmpty) {
       return dioBaseUrl;
     }
@@ -177,481 +154,282 @@ class _WordpressClient implements WordpressClient {
   }
 }
 
+// dart format on
+
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$wordpressClientHash() => r'6a17d57c2be0a08fe26b545efa8d79b3d62d53f4';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [wordpressClient].
 @ProviderFor(wordpressClient)
-final wordpressClientProvider = AutoDisposeProvider<WordpressClient>.internal(
-  wordpressClient,
-  name: r'wordpressClientProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$wordpressClientHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+final wordpressClientProvider = WordpressClientProvider._();
 
-typedef WordpressClientRef = AutoDisposeProviderRef<WordpressClient>;
-String _$getPostsHash() => r'e08ba191780e23b72fd057e1611722903a33374a';
+final class WordpressClientProvider
+    extends
+        $FunctionalProvider<WordpressClient, WordpressClient, WordpressClient>
+    with $Provider<WordpressClient> {
+  WordpressClientProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'wordpressClientProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
-/// Copied from Dart SDK
-class _SystemHash {
-  _SystemHash._();
+  @override
+  String debugGetCreateSourceHash() => _$wordpressClientHash();
 
-  static int combine(int hash, int value) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + value);
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x0007ffff & hash) << 10));
-    return hash ^ (hash >> 6);
+  @$internal
+  @override
+  $ProviderElement<WordpressClient> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  WordpressClient create(Ref ref) {
+    return wordpressClient(ref);
   }
 
-  static int finish(int hash) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x03ffffff & hash) << 3));
-    // ignore: parameter_assignments
-    hash = hash ^ (hash >> 11);
-    return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(WordpressClient value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<WordpressClient>(value),
+    );
   }
 }
 
-/// See also [getPosts].
+String _$wordpressClientHash() => r'6a17d57c2be0a08fe26b545efa8d79b3d62d53f4';
+
 @ProviderFor(getPosts)
-const getPostsProvider = GetPostsFamily();
+final getPostsProvider = GetPostsFamily._();
 
-/// See also [getPosts].
-class GetPostsFamily extends Family {
-  /// See also [getPosts].
-  const GetPostsFamily();
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+final class GetPostsProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<PostResponse>,
+          PostResponse,
+          FutureOr<PostResponse>
+        >
+    with $FutureModifier<PostResponse>, $FutureProvider<PostResponse> {
+  GetPostsProvider._({
+    required GetPostsFamily super.from,
+    required ({
+      int page,
+      int? category,
+      String? search,
+      String? order,
+      String? orderBy,
+    })
+    super.argument,
+  }) : super(
+         retry: null,
+         name: r'getPostsProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
 
   @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+  String debugGetCreateSourceHash() => _$getPostsHash();
 
   @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
+  String toString() {
+    return r'getPostsProvider'
+        ''
+        '$argument';
+  }
+
+  @$internal
+  @override
+  $FutureProviderElement<PostResponse> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
 
   @override
-  String? get name => r'getPostsProvider';
+  FutureOr<PostResponse> create(Ref ref) {
+    final argument =
+        this.argument
+            as ({
+              int page,
+              int? category,
+              String? search,
+              String? order,
+              String? orderBy,
+            });
+    return getPosts(
+      ref,
+      page: argument.page,
+      category: argument.category,
+      search: argument.search,
+      order: argument.order,
+      orderBy: argument.orderBy,
+    );
+  }
 
-  /// See also [getPosts].
+  @override
+  bool operator ==(Object other) {
+    return other is GetPostsProvider && other.argument == argument;
+  }
+
+  @override
+  int get hashCode {
+    return argument.hashCode;
+  }
+}
+
+String _$getPostsHash() => r'cf3039a53825b3af5034f85cf91c9532d4e9ce1e';
+
+final class GetPostsFamily extends $Family
+    with
+        $FunctionalFamilyOverride<
+          FutureOr<PostResponse>,
+          ({
+            int page,
+            int? category,
+            String? search,
+            String? order,
+            String? orderBy,
+          })
+        > {
+  GetPostsFamily._()
+    : super(
+        retry: null,
+        name: r'getPostsProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
   GetPostsProvider call({
     required int page,
     int? category,
     String? search,
     String? order,
     String? orderBy,
-  }) {
-    return GetPostsProvider(
+  }) => GetPostsProvider._(
+    argument: (
       page: page,
       category: category,
       search: search,
       order: order,
       orderBy: orderBy,
-    );
-  }
+    ),
+    from: this,
+  );
 
-  @visibleForOverriding
   @override
-  GetPostsProvider getProviderOverride(
-    covariant GetPostsProvider provider,
-  ) {
-    return call(
-      page: provider.page,
-      category: provider.category,
-      search: provider.search,
-      order: provider.order,
-      orderBy: provider.orderBy,
-    );
-  }
-
-  /// Enables overriding the behavior of this provider, no matter the parameters.
-  Override overrideWith(
-      FutureOr<PostResponse> Function(GetPostsRef ref) create) {
-    return _$GetPostsFamilyOverride(this, create);
-  }
+  String toString() => r'getPostsProvider';
 }
 
-class _$GetPostsFamilyOverride implements FamilyOverride {
-  _$GetPostsFamilyOverride(this.overriddenFamily, this.create);
-
-  final FutureOr<PostResponse> Function(GetPostsRef ref) create;
-
-  @override
-  final GetPostsFamily overriddenFamily;
-
-  @override
-  GetPostsProvider getProviderOverride(
-    covariant GetPostsProvider provider,
-  ) {
-    return provider._copyWith(create);
-  }
-}
-
-/// See also [getPosts].
-class GetPostsProvider extends AutoDisposeFutureProvider<PostResponse> {
-  /// See also [getPosts].
-  GetPostsProvider({
-    required int page,
-    int? category,
-    String? search,
-    String? order,
-    String? orderBy,
-  }) : this._internal(
-          (ref) => getPosts(
-            ref as GetPostsRef,
-            page: page,
-            category: category,
-            search: search,
-            order: order,
-            orderBy: orderBy,
-          ),
-          from: getPostsProvider,
-          name: r'getPostsProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$getPostsHash,
-          dependencies: GetPostsFamily._dependencies,
-          allTransitiveDependencies: GetPostsFamily._allTransitiveDependencies,
-          page: page,
-          category: category,
-          search: search,
-          order: order,
-          orderBy: orderBy,
-        );
-
-  GetPostsProvider._internal(
-    super.create, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.page,
-    required this.category,
-    required this.search,
-    required this.order,
-    required this.orderBy,
-  }) : super.internal();
-
-  final int page;
-  final int? category;
-  final String? search;
-  final String? order;
-  final String? orderBy;
-
-  @override
-  Override overrideWith(
-    FutureOr<PostResponse> Function(GetPostsRef ref) create,
-  ) {
-    return ProviderOverride(
-      origin: this,
-      override: GetPostsProvider._internal(
-        (ref) => create(ref as GetPostsRef),
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        page: page,
-        category: category,
-        search: search,
-        order: order,
-        orderBy: orderBy,
-      ),
-    );
-  }
-
-  @override
-  ({
-    int page,
-    int? category,
-    String? search,
-    String? order,
-    String? orderBy,
-  }) get argument {
-    return (
-      page: page,
-      category: category,
-      search: search,
-      order: order,
-      orderBy: orderBy,
-    );
-  }
-
-  @override
-  AutoDisposeFutureProviderElement<PostResponse> createElement() {
-    return _GetPostsProviderElement(this);
-  }
-
-  GetPostsProvider _copyWith(
-    FutureOr<PostResponse> Function(GetPostsRef ref) create,
-  ) {
-    return GetPostsProvider._internal(
-      (ref) => create(ref as GetPostsRef),
-      name: name,
-      dependencies: dependencies,
-      allTransitiveDependencies: allTransitiveDependencies,
-      debugGetCreateSourceHash: debugGetCreateSourceHash,
-      from: from,
-      page: page,
-      category: category,
-      search: search,
-      order: order,
-      orderBy: orderBy,
-    );
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return other is GetPostsProvider &&
-        other.page == page &&
-        other.category == category &&
-        other.search == search &&
-        other.order == order &&
-        other.orderBy == orderBy;
-  }
-
-  @override
-  int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, page.hashCode);
-    hash = _SystemHash.combine(hash, category.hashCode);
-    hash = _SystemHash.combine(hash, search.hashCode);
-    hash = _SystemHash.combine(hash, order.hashCode);
-    hash = _SystemHash.combine(hash, orderBy.hashCode);
-
-    return _SystemHash.finish(hash);
-  }
-}
-
-mixin GetPostsRef on AutoDisposeFutureProviderRef<PostResponse> {
-  /// The parameter `page` of this provider.
-  int get page;
-
-  /// The parameter `category` of this provider.
-  int? get category;
-
-  /// The parameter `search` of this provider.
-  String? get search;
-
-  /// The parameter `order` of this provider.
-  String? get order;
-
-  /// The parameter `orderBy` of this provider.
-  String? get orderBy;
-}
-
-class _GetPostsProviderElement
-    extends AutoDisposeFutureProviderElement<PostResponse> with GetPostsRef {
-  _GetPostsProviderElement(super.provider);
-
-  @override
-  int get page => (origin as GetPostsProvider).page;
-  @override
-  int? get category => (origin as GetPostsProvider).category;
-  @override
-  String? get search => (origin as GetPostsProvider).search;
-  @override
-  String? get order => (origin as GetPostsProvider).order;
-  @override
-  String? get orderBy => (origin as GetPostsProvider).orderBy;
-}
-
-String _$getPostHash() => r'f7b4c3c9bc8302b219db7e3391bb76ef6967308e';
-
-/// See also [getPost].
 @ProviderFor(getPost)
-const getPostProvider = GetPostFamily();
+final getPostProvider = GetPostFamily._();
 
-/// See also [getPost].
-class GetPostFamily extends Family {
-  /// See also [getPost].
-  const GetPostFamily();
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
+final class GetPostProvider
+    extends $FunctionalProvider<AsyncValue<Post>, Post, FutureOr<Post>>
+    with $FutureModifier<Post>, $FutureProvider<Post> {
+  GetPostProvider._({
+    required GetPostFamily super.from,
+    required int super.argument,
+  }) : super(
+         retry: null,
+         name: r'getPostProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
 
   @override
-  String? get name => r'getPostProvider';
+  String debugGetCreateSourceHash() => _$getPostHash();
 
-  /// See also [getPost].
-  GetPostProvider call({
-    required int id,
-  }) {
-    return GetPostProvider(
-      id: id,
-    );
+  @override
+  String toString() {
+    return r'getPostProvider'
+        ''
+        '($argument)';
   }
 
-  @visibleForOverriding
+  @$internal
   @override
-  GetPostProvider getProviderOverride(
-    covariant GetPostProvider provider,
-  ) {
-    return call(
-      id: provider.id,
-    );
-  }
-
-  /// Enables overriding the behavior of this provider, no matter the parameters.
-  Override overrideWith(FutureOr<Post> Function(GetPostRef ref) create) {
-    return _$GetPostFamilyOverride(this, create);
-  }
-}
-
-class _$GetPostFamilyOverride implements FamilyOverride {
-  _$GetPostFamilyOverride(this.overriddenFamily, this.create);
-
-  final FutureOr<Post> Function(GetPostRef ref) create;
+  $FutureProviderElement<Post> $createElement($ProviderPointer pointer) =>
+      $FutureProviderElement(pointer);
 
   @override
-  final GetPostFamily overriddenFamily;
-
-  @override
-  GetPostProvider getProviderOverride(
-    covariant GetPostProvider provider,
-  ) {
-    return provider._copyWith(create);
-  }
-}
-
-/// See also [getPost].
-class GetPostProvider extends AutoDisposeFutureProvider<Post> {
-  /// See also [getPost].
-  GetPostProvider({
-    required int id,
-  }) : this._internal(
-          (ref) => getPost(
-            ref as GetPostRef,
-            id: id,
-          ),
-          from: getPostProvider,
-          name: r'getPostProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$getPostHash,
-          dependencies: GetPostFamily._dependencies,
-          allTransitiveDependencies: GetPostFamily._allTransitiveDependencies,
-          id: id,
-        );
-
-  GetPostProvider._internal(
-    super.create, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.id,
-  }) : super.internal();
-
-  final int id;
-
-  @override
-  Override overrideWith(
-    FutureOr<Post> Function(GetPostRef ref) create,
-  ) {
-    return ProviderOverride(
-      origin: this,
-      override: GetPostProvider._internal(
-        (ref) => create(ref as GetPostRef),
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        id: id,
-      ),
-    );
-  }
-
-  @override
-  ({
-    int id,
-  }) get argument {
-    return (id: id,);
-  }
-
-  @override
-  AutoDisposeFutureProviderElement<Post> createElement() {
-    return _GetPostProviderElement(this);
-  }
-
-  GetPostProvider _copyWith(
-    FutureOr<Post> Function(GetPostRef ref) create,
-  ) {
-    return GetPostProvider._internal(
-      (ref) => create(ref as GetPostRef),
-      name: name,
-      dependencies: dependencies,
-      allTransitiveDependencies: allTransitiveDependencies,
-      debugGetCreateSourceHash: debugGetCreateSourceHash,
-      from: from,
-      id: id,
-    );
+  FutureOr<Post> create(Ref ref) {
+    final argument = this.argument as int;
+    return getPost(ref, id: argument);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is GetPostProvider && other.id == id;
+    return other is GetPostProvider && other.argument == argument;
   }
 
   @override
   int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, id.hashCode);
-
-    return _SystemHash.finish(hash);
+    return argument.hashCode;
   }
 }
 
-mixin GetPostRef on AutoDisposeFutureProviderRef<Post> {
-  /// The parameter `id` of this provider.
-  int get id;
-}
+String _$getPostHash() => r'6760a458cadbf584082a4f9c278a8a33a436badd';
 
-class _GetPostProviderElement extends AutoDisposeFutureProviderElement<Post>
-    with GetPostRef {
-  _GetPostProviderElement(super.provider);
+final class GetPostFamily extends $Family
+    with $FunctionalFamilyOverride<FutureOr<Post>, int> {
+  GetPostFamily._()
+    : super(
+        retry: null,
+        name: r'getPostProvider',
+        dependencies: null,
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  GetPostProvider call({required int id}) =>
+      GetPostProvider._(argument: id, from: this);
 
   @override
-  int get id => (origin as GetPostProvider).id;
+  String toString() => r'getPostProvider';
 }
 
-String _$getCategoriesHash() => r'b7088aab0649bc38dc1f0b4d306f28bf4a9e2c18';
-
-/// See also [getCategories].
 @ProviderFor(getCategories)
-final getCategoriesProvider =
-    AutoDisposeFutureProvider<List<Category>>.internal(
-  getCategories,
-  name: r'getCategoriesProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$getCategoriesHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+final getCategoriesProvider = GetCategoriesProvider._();
 
-typedef GetCategoriesRef = AutoDisposeFutureProviderRef<List<Category>>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, inference_failure_on_uninitialized_variable, inference_failure_on_function_return_type, inference_failure_on_untyped_parameter, deprecated_member_use_from_same_package
+final class GetCategoriesProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<List<Category>>,
+          List<Category>,
+          FutureOr<List<Category>>
+        >
+    with $FutureModifier<List<Category>>, $FutureProvider<List<Category>> {
+  GetCategoriesProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'getCategoriesProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$getCategoriesHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<List<Category>> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<List<Category>> create(Ref ref) {
+    return getCategories(ref);
+  }
+}
+
+String _$getCategoriesHash() => r'f8d2d056a7e43fcbcb8d77ffeadfcde3a31ac800';

@@ -7,10 +7,10 @@ class ThemeModeSwitch extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final themeMode = ref.watch(themeModeNotifierProvider);
+    final themeMode = ref.watch(themeModeProvider);
     return Switch.adaptive(
       value: themeMode == ThemeMode.light,
-      onChanged: (value) => ref.read(themeModeNotifierProvider.notifier).toggleTheme(),
+      onChanged: (value) => ref.read(themeModeProvider.notifier).toggleTheme(),
     );
   }
 }

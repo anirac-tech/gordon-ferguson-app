@@ -1,14 +1,14 @@
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:gordon_ferguson_app/app/app_startup.dart';
 import 'package:gordon_ferguson_app/app/features/about/view/about_view.dart';
-import 'package:gordon_ferguson_app/app/features/posts/view/screens/categories_view.dart';
-import 'package:gordon_ferguson_app/app/shared/home_screen.dart';
 import 'package:gordon_ferguson_app/app/features/posts/domain/post.dart';
+import 'package:gordon_ferguson_app/app/features/posts/view/screens/categories_view.dart';
 import 'package:gordon_ferguson_app/app/features/posts/view/screens/favorites_view.dart';
 import 'package:gordon_ferguson_app/app/features/posts/view/screens/post_detail_view.dart';
 import 'package:gordon_ferguson_app/app/features/posts/view/screens/posts_view.dart';
 import 'package:gordon_ferguson_app/app/features/settings/settings_view.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:gordon_ferguson_app/app/shared/home_screen.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'router.g.dart';
@@ -24,7 +24,7 @@ final _shellKeyFavorites = GlobalKey<NavigatorState>(debugLabel: 'favoritesShell
 final _shellKeyAbout = GlobalKey<NavigatorState>(debugLabel: 'aboutShell');
 
 @riverpod
-GoRouter goRouter(GoRouterRef ref) {
+GoRouter goRouter(Ref ref) {
   final appStartupState = ref.watch(appStartupProvider);
   return GoRouter(
     initialLocation: PostsView.path,
@@ -58,9 +58,7 @@ GoRouter goRouter(GoRouterRef ref) {
               GoRoute(
                 path: PostsView.path,
                 name: PostsView.name,
-                pageBuilder: (_, __) => const NoTransitionPage(
-                  child: PostsView(),
-                ),
+                pageBuilder: (_, __) => const NoTransitionPage(child: PostsView()),
               ),
             ],
           ),
@@ -71,9 +69,7 @@ GoRouter goRouter(GoRouterRef ref) {
               GoRoute(
                 path: CategoriesView.path,
                 name: CategoriesView.name,
-                pageBuilder: (_, __) => const NoTransitionPage(
-                  child: CategoriesView(),
-                ),
+                pageBuilder: (_, __) => const NoTransitionPage(child: CategoriesView()),
               ),
             ],
           ),
@@ -84,9 +80,7 @@ GoRouter goRouter(GoRouterRef ref) {
               GoRoute(
                 path: FavoritesView.path,
                 name: FavoritesView.name,
-                pageBuilder: (_, __) => const NoTransitionPage(
-                  child: FavoritesView(),
-                ),
+                pageBuilder: (_, __) => const NoTransitionPage(child: FavoritesView()),
               ),
             ],
           ),
@@ -97,9 +91,7 @@ GoRouter goRouter(GoRouterRef ref) {
               GoRoute(
                 path: AboutView.path,
                 name: AboutView.name,
-                pageBuilder: (_, __) => const NoTransitionPage(
-                  child: AboutView(),
-                ),
+                pageBuilder: (_, __) => const NoTransitionPage(child: AboutView()),
               ),
             ],
           ),
@@ -110,7 +102,7 @@ GoRouter goRouter(GoRouterRef ref) {
         name: PostDetailView.name,
         parentNavigatorKey: _rootNavigatorKey,
         builder: (_, state) {
-          Post post = state.extra as Post;
+          final post = state.extra! as Post;
           return PostDetailView(post);
         },
       ),
@@ -118,17 +110,14 @@ GoRouter goRouter(GoRouterRef ref) {
         path: SettingsView.path,
         name: SettingsView.name,
         parentNavigatorKey: _rootNavigatorKey,
-        builder: (_, __) => SettingsView(),
+        builder: (_, __) => const SettingsView(),
       ),
       GoRoute(
         path: AppStartupView.path,
         name: AppStartupView.name,
         parentNavigatorKey: _rootNavigatorKey,
-        pageBuilder: (context, state) => NoTransitionPage(
-          child: AppStartupView(
-            onLoaded: (_) => const SizedBox.shrink(),
-          ),
-        ),
+        pageBuilder: (context, state) =>
+            NoTransitionPage(child: AppStartupView(onLoaded: (_) => const SizedBox.shrink())),
       ),
     ],
   );

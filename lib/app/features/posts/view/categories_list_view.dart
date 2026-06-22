@@ -7,7 +7,7 @@ import 'package:gordon_ferguson_app/app/shared/async_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class CategoriesListView extends ConsumerWidget {
-  CategoriesListView({super.key});
+  const CategoriesListView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -20,7 +20,7 @@ class CategoriesListView extends ConsumerWidget {
         final categories = data.where((c) => c.count > 0).toList();
         log.d("[Categories Stream] ${categories.map((e) => '${e.id}')}");
         return ListView.builder(
-          padding: EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8),
           itemCount: categories.length,
           itemBuilder: (context, index) => CategoryTile(categories[index]),
         );

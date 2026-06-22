@@ -1,9 +1,9 @@
-import 'package:gordon_ferguson_app/SETUP.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:gordon_ferguson_app/app/app.dart';
 import 'package:gordon_ferguson_app/app/features/posts/view/screens/posts_view.dart';
 import 'package:gordon_ferguson_app/app/shared/navigation_icons.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:gordon_ferguson_app/setup.dart';
 
 import '../../data/test_data.dart';
 import '../../helpers/helpers.dart';
@@ -18,7 +18,7 @@ void main() {
       await tester.tap(find.byKey(homeIconKey));
       await tester.pumpAndSettle();
 
-      expect(find.text(BLOG_TITLE), findsOneWidget);
+      expect(find.text(blogTitle), findsOneWidget);
     });
     testWidgets('Favorites', (tester) async {
       // Load app widget.
@@ -56,8 +56,8 @@ void main() {
     });
   });
   group('Smaller Device', () {
-    testWidgets("navigation", (tester) async {
-      tester.view.physicalSize = Size(300, 900);
+    testWidgets('navigation', (tester) async {
+      tester.view.physicalSize = const Size(300, 900);
       tester.view.devicePixelRatio = 1.0;
       addTearDown(tester.view.resetPhysicalSize);
       addTearDown(tester.view.resetDevicePixelRatio);
@@ -68,7 +68,7 @@ void main() {
       await tester.tap(find.byKey(homeIconKey));
       await tester.pumpAndSettle();
 
-      expect(find.text(BLOG_TITLE), findsOneWidget);
+      expect(find.text(blogTitle), findsOneWidget);
 
       // View Favorites screen
       await tester.tap(find.byKey(favoritesIconKey));

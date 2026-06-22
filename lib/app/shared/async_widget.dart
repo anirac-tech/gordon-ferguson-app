@@ -1,9 +1,9 @@
-import 'package:gordon_ferguson_app/app/config/log_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gordon_ferguson_app/app/config/log_manager.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class AsyncValueWidget<T> extends ConsumerWidget {
-  const AsyncValueWidget({super.key, required this.value, required this.data});
+  const AsyncValueWidget({required this.value, required this.data, super.key});
   final AsyncValue<T> value;
   final Widget Function(T) data;
 
@@ -18,12 +18,12 @@ class AsyncValueWidget<T> extends ConsumerWidget {
         log.e(error.toString(), error, stackTrace: stackTrace);
         return Center(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text("There was an error loading the content.",
-                textAlign: TextAlign.center,
-                style: theme.textTheme.titleSmall?.copyWith(
-                  color: theme.colorScheme.error,
-                )),
+            padding: const EdgeInsets.all(16),
+            child: Text(
+              error.toString(),
+              textAlign: TextAlign.center,
+              style: theme.textTheme.titleSmall?.copyWith(color: theme.colorScheme.error),
+            ),
           ),
         );
       },

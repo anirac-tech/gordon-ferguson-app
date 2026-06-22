@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:appwrite/models.dart' hide Log;
+import 'package:appwrite/appwrite.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:gordon_ferguson_app/app/config/logger.dart';
@@ -11,18 +11,17 @@ import 'package:gordon_ferguson_app/app/features/settings/data/shared_preference
 import 'package:gordon_ferguson_app/env/flavor.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:appwrite/appwrite.dart';
 
 part 'notifications_service.g.dart';
 
 @Riverpod(keepAlive: true)
 class NotificationsService extends _$NotificationsService {
-  static const tokenKey = "notificationToken";
-  static const deviceIdKey = "deviceId";
+  static const tokenKey = 'notificationToken';
+  static const deviceIdKey = 'deviceId';
   static const projectId = '67424e230025790edf98';
-  static const databaseId = "gordon_ferguson_teachings";
-  static const collectionId = "tokens";
-  static const topicId = "new_post";
+  static const topicId = 'new_post';
+  static const databaseId = 'gordon_ferguson_teachings';
+  static const collectionId = 'tokens';
 
   late final FirebaseMessaging firebaseMessaging;
   late final SharedPreferencesWithCache sharedPreferences;
@@ -34,12 +33,12 @@ class NotificationsService extends _$NotificationsService {
     sharedPreferences = ref.watch(sharedPreferencesProvider).requireValue;
     firebaseMessaging = FirebaseMessaging.instance;
     firebaseMessaging.onTokenRefresh.listen(_updateToken);
-    Log.d("Device ID: $deviceId");
+    Log.d('Device ID: $deviceId');
     return sharedPreferences.getString(tokenKey);
   }
 
   String getDeviceId() {
-    String? userId = sharedPreferences.getString(deviceIdKey);
+    var userId = sharedPreferences.getString(deviceIdKey);
 
     if (userId == null) {
       userId = ID.unique();
@@ -51,7 +50,7 @@ class NotificationsService extends _$NotificationsService {
 
   Future<void> initializePushNotifications() async {
     await registerDevice();
-    firebaseMessaging.getInitialMessage().then(_handleMessage);
+    await firebaseMessaging.getInitialMessage().then(_handleMessage);
     FirebaseMessaging.onMessageOpenedApp.listen(_handleMessage);
   }
 
@@ -63,14 +62,14 @@ class NotificationsService extends _$NotificationsService {
     if (await _getTokenFromAppwrite()) return;
 
     // get permission and create push target
-    final NotificationSettings permission = await firebaseMessaging.requestPermission();
+    final permission = await firebaseMessaging.requestPermission();
 
     if (permission.authorizationStatus != AuthorizationStatus.denied) {
       final fcmToken = await firebaseMessaging.getToken();
       Log.d(DateTime.now().toIso8601String());
       if (fcmToken == null) return;
 
-      Log.d("New token: $fcmToken");
+      Log.d('New token: $fcmToken');
 
       try {
         final databases = Databases(_appwriteClient);
@@ -80,20 +79,20 @@ class NotificationsService extends _$NotificationsService {
           collectionId: collectionId,
           documentId: deviceId,
           data: {
-            "token": fcmToken,
-            "timestamp": DateTime.now().toIso8601String(),
-            "platform": kIsWeb
-                ? "web"
+            'token': fcmToken,
+            'timestamp': DateTime.now().toIso8601String(),
+            'platform': kIsWeb
+                ? 'web'
                 : Platform.isAndroid
-                    ? "android"
-                    : "ios",
-            "flavor": getFlavor().name,
-            "is_subscribed": true,
+                ? 'android'
+                : 'ios',
+            'flavor': getFlavor().name,
+            'is_subscribed': true,
           },
         );
         sharedPreferences.setString(tokenKey, fcmToken);
       } catch (e) {
-        Log.e("Error storing token: $e", e);
+        Log.e('Error storing token: $e', e);
       } finally {
         state = fcmToken;
       }
@@ -101,21 +100,21 @@ class NotificationsService extends _$NotificationsService {
   }
 
   Future<bool> _getTokenFromAppwrite() async {
-    final Databases databases = Databases(_appwriteClient);
+    final databases = Databases(_appwriteClient);
     try {
-      final Document document = await databases.getDocument(
+      final document = await databases.getDocument(
         databaseId: databaseId,
         collectionId: collectionId,
         documentId: deviceId,
       );
-      if (document.data["token"] != null) {
-        final fcmToken = document.data["token"] as String;
+      if (document.data['token'] != null) {
+        final fcmToken = document.data['token'] as String;
         sharedPreferences.setString(tokenKey, fcmToken);
         state = fcmToken;
         return true;
       }
     } on AppwriteException catch (e) {
-      Log.e("Error getting document from appwrite: $e", e);
+      Log.e('Error getting document from appwrite: $e', e);
     }
 
     return false;
@@ -127,12 +126,12 @@ class NotificationsService extends _$NotificationsService {
     } else {
       await firebaseMessaging.subscribeToTopic(topicId);
     }
-    final Databases databases = Databases(_appwriteClient);
+    final databases = Databases(_appwriteClient);
     await databases.updateDocument(
       databaseId: databaseId,
       collectionId: collectionId,
       documentId: deviceId,
-      data: {"is_subscribed": !isSubscribed},
+      data: {'is_subscribed': !isSubscribed},
     );
   }
 
@@ -145,10 +144,7 @@ class NotificationsService extends _$NotificationsService {
         databaseId: databaseId,
         collectionId: collectionId,
         documentId: deviceId,
-        data: {
-          "token": newToken,
-          "timestamp": DateTime.now().toIso8601String(),
-        },
+        data: {'token': newToken, 'timestamp': DateTime.now().toIso8601String()},
       );
       sharedPreferences.setString(tokenKey, newToken);
       state = newToken;
@@ -159,7 +155,7 @@ class NotificationsService extends _$NotificationsService {
     if (message == null) return;
 
     try {
-      final postId = int.parse(message.data["post_id"] as String);
+      final postId = int.parse(message.data['post_id'] as String);
       final post = await ref.read(wordpressClientProvider).getPost(postId);
       final goRouter = ref.read(goRouterProvider);
       if (goRouter.canPop()) {
@@ -168,7 +164,7 @@ class NotificationsService extends _$NotificationsService {
         goRouter.pushNamed(PostDetailView.name, extra: post);
       }
     } catch (e) {
-      Log.e("Error handling notification: $e", e);
+      Log.e('Error handling notification: $e', e);
     }
   }
 }

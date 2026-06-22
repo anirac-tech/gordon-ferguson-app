@@ -11,32 +11,28 @@ class WpaSettingsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) => kIsWeb
       // coverage:ignore-start
-      ? Column(
+      ? const Column(
           children: [
             Card(
-              margin: EdgeInsets.all(20.0),
+              margin: EdgeInsets.all(20),
               child: Padding(
-                padding: EdgeInsets.all(20.0),
+                padding: EdgeInsets.all(20),
                 child: Row(
                   children: [
-                    const Expanded(
-                      child: Text('Theme Mode'),
-                    ),
+                    Expanded(child: Text('Theme Mode')),
                     ThemeModeSwitch(),
                   ],
                 ),
               ),
             ),
             Card(
-              margin: const EdgeInsets.all(20.0),
+              margin: EdgeInsets.all(20),
               child: Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: EdgeInsets.all(20),
                 child: AdjustableTextWidget(
                   child: Row(
                     children: [
-                      Expanded(
-                        child: Text('Text size'),
-                      ),
+                      Expanded(child: Text('Text size')),
                       TextSizeIconButton(isIncrease: false),
                       TextSizeIconButton(),
                     ],
@@ -50,23 +46,16 @@ class WpaSettingsList extends StatelessWidget {
       : SettingsList(
           sections: [
             SettingsSection(
-              title: Text('General'),
+              title: const Text('General'),
               tiles: <SettingsTile>[
                 SettingsTile(
-                  title: Text('Theme Mode'),
-                  trailing: Row(
-                    children: [ThemeModeSwitch()],
-                  ),
+                  title: const Text('Theme Mode'),
+                  trailing: const Row(children: [ThemeModeSwitch()]),
                 ),
                 SettingsTile(
-                  title: AdjustableTextWidget(
-                    child: Text('Text size'),
-                  ),
-                  trailing: Row(
-                    children: [
-                      TextSizeIconButton(isIncrease: false),
-                      TextSizeIconButton(),
-                    ],
+                  title: const AdjustableTextWidget(child: Text('Text size')),
+                  trailing: const Row(
+                    children: [TextSizeIconButton(isIncrease: false), TextSizeIconButton()],
                   ),
                 ),
               ],

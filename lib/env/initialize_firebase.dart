@@ -1,11 +1,11 @@
 // import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:gordon_ferguson_app/app/config/logger.dart';
-import 'package:gordon_ferguson_app/env/flavor.dart';
 // import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:gordon_ferguson_app/app/config/logger.dart';
+import 'package:gordon_ferguson_app/env/flavor.dart';
 import 'package:gordon_ferguson_app/firebase_options_dev.dart' as dev;
-import 'package:gordon_ferguson_app/firebase_options_stg.dart' as stg;
 import 'package:gordon_ferguson_app/firebase_options_prod.dart' as prod;
+import 'package:gordon_ferguson_app/firebase_options_stg.dart' as stg;
 
 Future<void> initializeFirebaseApp() async {
   final flavor = getFlavor();
@@ -16,9 +16,7 @@ Future<void> initializeFirebaseApp() async {
   };
 
   try {
-    await Firebase.initializeApp(
-      options: firebaseOptions,
-    );
+    await Firebase.initializeApp(options: firebaseOptions);
     // await FirebaseAnalytics.instance.logAppOpen(
     //   parameters: {'app_flavor': '${flavor.name}'},
     // );

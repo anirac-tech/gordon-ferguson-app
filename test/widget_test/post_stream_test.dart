@@ -1,13 +1,15 @@
+import 'package:dio/dio.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:gordon_ferguson_app/app/app.dart';
 import 'package:gordon_ferguson_app/app/config/logger.dart';
+import 'package:gordon_ferguson_app/app/config/provider_retry.dart';
 import 'package:gordon_ferguson_app/app/features/posts/data/favorites_repository.dart';
 import 'package:gordon_ferguson_app/app/features/posts/data/wordpress_client.dart';
-import 'package:gordon_ferguson_app/app/app.dart';
 import 'package:gordon_ferguson_app/app/features/posts/domain/post_response.dart';
 import 'package:gordon_ferguson_app/app/features/posts/view/post_cell.dart';
 import 'package:gordon_ferguson_app/app/features/settings/data/shared_preferences.dart';
 import 'package:gordon_ferguson_app/app/shared/navigation_icons.dart';
-import 'package:dio/dio.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -19,21 +21,28 @@ const emptyResponse = PostResponse(posts: [], totalPages: 0, totalResults: 0);
 void main() {
   ProviderContainer createContainer(WordpressClient wordpressClient) {
     final container = ProviderContainer(
-      overrides: [
-        wordpressClientProvider.overrideWithValue(wordpressClient),
-      ],
+      retry: noProviderRetry,
+      overrides: [wordpressClientProvider.overrideWithValue(wordpressClient)],
     );
     addTearDown(container.dispose);
     return container;
   }
 
-  Future<void> pumpApp(WidgetTester tester, WordpressClient wordpressClient) async {
+  Future<void> pumpApp(
+    WidgetTester tester,
+    WordpressClient wordpressClient,
+  ) async {
     final sharedPreferences = MockSharedPreferences();
-    await tester.pumpApp(const App(), overrides: [
-      wordpressClientProvider.overrideWithValue(wordpressClient),
-      favoriteListProvider.overrideWith((ref) => Stream.empty()),
-      sharedPreferencesProvider.overrideWith((ref) => Future.value(sharedPreferences)),
-    ]);
+    await tester.pumpApp(
+      const App(),
+      overrides: [
+        wordpressClientProvider.overrideWithValue(wordpressClient),
+        favoriteListProvider.overrideWith((ref) => const Stream.empty()),
+        sharedPreferencesProvider.overrideWith(
+          (ref) => Future.value(sharedPreferences),
+        ),
+      ],
+    );
   }
 
   setUpAll(() {
@@ -44,19 +53,23 @@ void main() {
   group('Test PostClient and getPosts Provider', () {
     test('success', () async {
       final postClient = MockPostClient();
-      when(() => postClient.getPosts(any(), any()))
-          .thenAnswer((invocation) => Future.value(mockHttpResponse));
+      when(
+        () => postClient.getPosts(any(), any()),
+      ).thenAnswer((invocation) => Future.value(mockHttpResponse));
 
       final container = createContainer(postClient);
       final listener = ProviderListener<AsyncValue<PostResponse>>();
 
-      container.listen<AsyncValue<PostResponse>>(
+      final subscription = container.listen<AsyncValue<PostResponse>>(
         getPostsProvider(page: 1),
         listener.call,
         fireImmediately: true,
       );
+      addTearDown(subscription.close);
 
-      verifyNever(() => listener(null, const AsyncData<PostResponse>(emptyResponse)));
+      verifyNever(
+        () => listener(null, const AsyncData<PostResponse>(emptyResponse)),
+      );
 
       // Act
       final response = await container.read(getPostsProvider(page: 1).future);
@@ -65,9 +78,9 @@ void main() {
       verifyInOrder([
         () => listener(null, const AsyncLoading<PostResponse>()),
         () => listener(
-              const AsyncLoading<PostResponse>(),
-              any(that: isA<AsyncData<PostResponse>>()),
-            ),
+          const AsyncLoading<PostResponse>(),
+          any(that: isA<AsyncData<PostResponse>>()),
+        ),
       ]);
 
       expect(response.posts.length, mockPosts.length);
@@ -76,16 +89,19 @@ void main() {
       final postClient = MockPostClient();
       final exception = Exception('Posts connection failed');
 
-      when(() => postClient.getPosts(any(), any())).thenThrow(exception);
+      when(
+        () => postClient.getPosts(any(), any()),
+      ).thenAnswer((_) async => throw exception);
 
       final container = createContainer(postClient);
       final listener = ProviderListener<AsyncValue<PostResponse>>();
 
-      container.listen<AsyncValue<PostResponse>>(
+      final subscription = container.listen<AsyncValue<PostResponse>>(
         getPostsProvider(page: 1),
         listener.call,
         fireImmediately: true,
       );
+      addTearDown(subscription.close);
 
       const data = AsyncData<PostResponse>(emptyResponse);
       verifyNever(() => listener(null, data));
@@ -98,9 +114,10 @@ void main() {
       verifyInOrder([
         () => listener(null, const AsyncLoading<PostResponse>()),
         () => listener(
-              // ignore: strict_raw_type
-              any(that: isA<AsyncLoading>()), any(that: isA<AsyncError>()),
-            ),
+          // ignore: strict_raw_type
+          any(that: isA<AsyncLoading>()),
+          any(that: isA<AsyncError<PostResponse>>()),
+        ),
       ]);
       verifyNoMoreInteractions(listener);
     });
@@ -108,8 +125,9 @@ void main() {
   group('Test Post Stream Widget', () {
     testWidgets('success', (tester) async {
       final postClient = MockPostClient();
-      when(() => postClient.getPosts(any(), any()))
-          .thenAnswer((invocation) => Future.value(mockHttpResponse));
+      when(
+        () => postClient.getPosts(any(), any()),
+      ).thenAnswer((invocation) => Future.value(mockHttpResponse));
 
       await pumpApp(tester, postClient);
       await tester.pumpAndSettle();
@@ -139,11 +157,13 @@ void main() {
       final postClient = MockPostClient();
       final response1 = mockHttpPaginationResponse(1, pageSize + 1);
       final response2 = mockHttpPaginationResponse(2, pageSize + 1);
-      when(() => postClient.getPosts(1, any())).thenAnswer((invocation) => Future.value(response1));
-      when(() => postClient.getPosts(2, any())).thenAnswer((invocation) => Future.delayed(
-            const Duration(seconds: 3),
-            () => response2,
-          ));
+      when(
+        () => postClient.getPosts(1, any()),
+      ).thenAnswer((invocation) => Future.value(response1));
+      when(() => postClient.getPosts(2, any())).thenAnswer(
+        (invocation) =>
+            Future.delayed(const Duration(seconds: 3), () => response2),
+      );
 
       await pumpApp(tester, postClient);
       await tester.pumpAndSettle();
@@ -151,16 +171,23 @@ void main() {
       await tester.tap(find.byKey(homeIconKey));
       await tester.pumpAndSettle();
 
-      await tester.scrollUntilVisible(find.byType(PostCellLoading), 500);
+      await tester.scrollUntilVisible(
+        find.byType(PostCellLoading),
+        500,
+        scrollable: find.byType(Scrollable).first,
+      );
       await tester.pumpAndSettle();
 
-      expect(find.byType(PostCell), findsAtLeast(2));
+      expect(find.byType(PostCell), findsAtLeast(1));
+      verify(() => postClient.getPosts(2, any())).called(1);
     });
     testWidgets('failure', (tester) async {
       final postClient = MockPostClient();
       final exception = Exception('Posts connection failed');
       final response1 = mockHttpPaginationResponse(1, pageSize + 1);
-      when(() => postClient.getPosts(1, any())).thenAnswer((invocation) => Future.value(response1));
+      when(
+        () => postClient.getPosts(1, any()),
+      ).thenAnswer((invocation) => Future.value(response1));
       when(() => postClient.getPosts(2, any())).thenThrow(exception);
 
       await pumpApp(tester, postClient);
@@ -169,7 +196,11 @@ void main() {
       await tester.tap(find.byKey(homeIconKey));
       await tester.pumpAndSettle();
 
-      await tester.scrollUntilVisible(find.byType(PostCellError), 500);
+      await tester.scrollUntilVisible(
+        find.byType(PostCellError),
+        500,
+        scrollable: find.byType(Scrollable).first,
+      );
       await tester.pumpAndSettle();
 
       await tester.tap(find.byType(PostCellError));

@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:gordon_ferguson_app/app/app.dart';
 import 'package:gordon_ferguson_app/app/features/posts/data/database/database.dart';
 import 'package:gordon_ferguson_app/app/features/posts/data/favorites_repository.dart';
@@ -9,8 +11,6 @@ import 'package:gordon_ferguson_app/app/features/posts/view/screens/favorites_vi
 import 'package:gordon_ferguson_app/app/features/posts/view/screens/posts_view.dart';
 import 'package:gordon_ferguson_app/app/features/settings/data/shared_preferences.dart';
 import 'package:gordon_ferguson_app/app/shared/navigation_icons.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../data/test_data.dart';
@@ -18,11 +18,14 @@ import '../helpers/helpers.dart';
 
 void main() {
   Future<void> pumpApp(WidgetTester tester, WpaDatabase database) async {
-    await tester.pumpApp(const App(), overrides: [
-      getPostsProvider.overrideWith((ref) async => Future.value(mockPostResponse)),
-      databaseProvider.overrideWith((ref) => database),
-      sharedPreferencesProvider.overrideWith((ref) => MockSharedPreferences()),
-    ]);
+    await tester.pumpApp(
+      const App(),
+      overrides: [
+        getPostsProvider.overrideWith((ref, argument) async => Future.value(mockPostResponse)),
+        databaseProvider.overrideWith((ref) => database),
+        sharedPreferencesProvider.overrideWith((ref) => MockSharedPreferences()),
+      ],
+    );
   }
 
   final exception = Exception('Failed');
@@ -50,9 +53,10 @@ void main() {
       await tester.pumpApp(
         const App(),
         overrides: [
-          getPostsProvider.overrideWith((ref) async => Future.value(mockPostResponse)),
+          getPostsProvider.overrideWith((ref, argument) async => Future.value(mockPostResponse)),
           favoriteListProvider.overrideWith(
-              (ref) => Stream.fromFuture(Future.delayed(Duration(seconds: 2), () => mockPosts))),
+            (ref) => Stream.fromFuture(Future.delayed(const Duration(seconds: 2), () => mockPosts)),
+          ),
           sharedPreferencesProvider.overrideWith((ref) => MockSharedPreferences()),
         ],
       );
@@ -70,7 +74,7 @@ void main() {
       await tester.pumpApp(
         const App(),
         overrides: [
-          getPostsProvider.overrideWith((ref) async => Future.value(mockPostResponse)),
+          getPostsProvider.overrideWith((ref, argument) async => Future.value(mockPostResponse)),
           favoriteListProvider.overrideWith((ref) => throw exception),
           sharedPreferencesProvider.overrideWith((ref) => MockSharedPreferences()),
         ],
@@ -100,7 +104,7 @@ void main() {
       await tester.pumpAndSettle();
 
       // Go to Post Details
-      await tester.tap(find.byKey(Key('${PostsView.name}_1')));
+      await tester.tap(find.byKey(const Key('${PostsView.name}_1')));
       await tester.pumpAndSettle();
 
       // Tap favorite
@@ -135,7 +139,7 @@ void main() {
       await tester.pumpAndSettle();
 
       // Go to Post Details
-      await tester.tap(find.byKey(Key('${PostsView.name}_1')));
+      await tester.tap(find.byKey(const Key('${PostsView.name}_1')));
       await tester.pumpAndSettle();
 
       // Tap favorite

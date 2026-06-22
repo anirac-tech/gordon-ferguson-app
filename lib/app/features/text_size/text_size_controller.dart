@@ -5,6 +5,7 @@ part 'text_size_controller.g.dart';
 
 @Riverpod(keepAlive: true)
 class TextSizeController extends _$TextSizeController {
+  @override
   double build() {
     final prefs = ref.watch(sharedPreferencesProvider).requireValue;
     return prefs.getDouble(textSizeKey) ?? 1.0;

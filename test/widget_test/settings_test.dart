@@ -1,6 +1,6 @@
+import 'package:flutter_test/flutter_test.dart';
 import 'package:gordon_ferguson_app/app/app.dart';
 import 'package:gordon_ferguson_app/app/features/settings/settings_icon_button.dart';
-import 'package:flutter_test/flutter_test.dart';
 
 import '../helpers/helpers.dart';
 

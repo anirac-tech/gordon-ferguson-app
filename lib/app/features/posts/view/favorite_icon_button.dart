@@ -1,6 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:gordon_ferguson_app/app/features/posts/data/favorites_repository.dart';
 import 'package:gordon_ferguson_app/app/features/posts/domain/post.dart';
-import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class FavoriteIconButton extends ConsumerWidget {
@@ -11,22 +11,15 @@ class FavoriteIconButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final favoritesList = ref.watch(favoriteListProvider);
-    final isFavorite = favoritesList.hasValue ? favoritesList.value!.contains(post) : false;
+    final isFavorite = favoritesList.hasValue && favoritesList.value!.contains(post);
 
     return IconButton(
       onPressed: () => favoritesList.isLoading
           ? null
           : isFavorite
-              ? ref.read(favoritesRepositoryProvider).removeFavorite(
-                    post,
-                  )
-              : ref.read(favoritesRepositoryProvider).addFavorite(
-                    post,
-                  ),
-      icon: Icon(
-        isFavorite ? Icons.favorite : Icons.favorite_border,
-        color: Colors.red,
-      ),
+          ? ref.read(favoritesRepositoryProvider).removeFavorite(post)
+          : ref.read(favoritesRepositoryProvider).addFavorite(post),
+      icon: Icon(isFavorite ? Icons.favorite : Icons.favorite_border, color: Colors.red),
     );
   }
 }

@@ -8,11 +8,11 @@ part 'shared_preferences.g.dart';
 // coverage:ignore-start
 
 class SharedPreferencesMigrator {
+  SharedPreferencesMigrator({required this.oldPrefs, required this.newPrefs});
   final SharedPreferences oldPrefs;
   final SharedPreferencesWithCache newPrefs;
-  SharedPreferencesMigrator({required this.oldPrefs, required this.newPrefs});
 
-  static const didMigrateKey = "didMigrate";
+  static const didMigrateKey = 'didMigrate';
 
   bool? get didMigrate => newPrefs.getBool(didMigrateKey);
 
@@ -22,37 +22,35 @@ class SharedPreferencesMigrator {
     for (final key in oldPrefs.getKeys()) {
       final value = oldPrefs.get(key);
       switch (value) {
-        case String s:
+        case final String s:
           await newPrefs.setString(key, s);
-        case bool b:
+        case final bool b:
           await newPrefs.setBool(key, b);
-        case double d:
+        case final double d:
           await newPrefs.setDouble(key, d);
-        case List<String> l:
+        case final List<String> l:
           await newPrefs.setStringList(key, l);
-        case int i:
+        case final int i:
           await newPrefs.setInt(key, i);
         default:
-          Log.e("Error migrating prefs:", Exception("Tried to store unsupported value"));
+          Log.e('Error migrating prefs:', Exception('Tried to store unsupported value'));
       }
     }
     // Store that migration occurred
-    newPrefs.setBool(didMigrateKey, true);
-    Log.d("Migrated to SharedPreferencesWithCache successfully!");
+    await newPrefs.setBool(didMigrateKey, true);
+    Log.d('Migrated to SharedPreferencesWithCache successfully!');
   }
 }
 
 @Riverpod(keepAlive: true)
-Future<SharedPreferencesWithCache> sharedPreferences(SharedPreferencesRef) async {
+Future<SharedPreferencesWithCache> sharedPreferences(Ref ref) async {
   final newPrefs = await SharedPreferencesWithCache.create(
-    cacheOptions: SharedPreferencesWithCacheOptions(),
+    cacheOptions: const SharedPreferencesWithCacheOptions(),
   );
   final oldPrefs = await SharedPreferences.getInstance();
-  final migrator = SharedPreferencesMigrator(
-    oldPrefs: oldPrefs,
-    newPrefs: newPrefs,
-  );
+  final migrator = SharedPreferencesMigrator(oldPrefs: oldPrefs, newPrefs: newPrefs);
   await migrator.migrate();
   return newPrefs;
 }
+
 // coverage:ignore-end

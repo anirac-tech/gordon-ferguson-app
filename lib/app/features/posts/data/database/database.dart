@@ -1,6 +1,6 @@
+import 'package:drift/drift.dart';
 import 'package:gordon_ferguson_app/app/features/posts/data/database/connection/connection.dart';
 import 'package:gordon_ferguson_app/app/features/posts/domain/post.dart';
-import 'package:drift/drift.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'database.g.dart';
@@ -13,13 +13,13 @@ class FavoritePosts extends Table {
 
 @DriftDatabase(tables: [FavoritePosts])
 class WpaDatabase extends _$WpaDatabase {
-  WpaDatabase(QueryExecutor e) : super(e);
+  WpaDatabase(super.e);
 
   @override
   int get schemaVersion => 1;
 
   Stream<List<FavoritePost>> watchPosts() => select(favoritePosts).watch();
-  Future<List<FavoritePost>> getPosts() async => await select(favoritePosts).get();
+  Future<List<FavoritePost>> getPosts() async => select(favoritePosts).get();
 
   Future<int> insertFavoritePost(FavoritePostsCompanion entry) => into(favoritePosts).insert(entry);
 
@@ -28,6 +28,6 @@ class WpaDatabase extends _$WpaDatabase {
 }
 
 @Riverpod(keepAlive: true)
-WpaDatabase database(DatabaseRef _) => constructDb();
+WpaDatabase database(Ref _) => constructDb();
 
 //coverage:ignore-end

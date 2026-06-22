@@ -10,13 +10,8 @@ class SettingsView extends StatelessWidget {
   static const name = 'settings';
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: WpaAppBar(
-          title: const Text('Settings'),
-          surfaceTintColor: Colors.transparent,
-        ),
-        body: Center(
-          child: WpaSettingsList(),
-        ),
-      );
+  Widget build(BuildContext context) => const Scaffold(
+    appBar: WpaAppBar(title: Text('Settings'), surfaceTintColor: Colors.transparent),
+    body: Center(child: WpaSettingsList()),
+  );
 }
