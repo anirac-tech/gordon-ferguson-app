@@ -13,7 +13,7 @@ part of 'notifications_service.dart';
 final notificationsServiceProvider = NotificationsServiceProvider._();
 
 final class NotificationsServiceProvider
-    extends $NotifierProvider<NotificationsService, String?> {
+    extends $NotifierProvider<NotificationsService, bool> {
   NotificationsServiceProvider._()
     : super(
         from: null,
@@ -33,28 +33,28 @@ final class NotificationsServiceProvider
   NotificationsService create() => NotificationsService();
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(String? value) {
+  Override overrideWithValue(bool value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<String?>(value),
+      providerOverride: $SyncValueProvider<bool>(value),
     );
   }
 }
 
 String _$notificationsServiceHash() =>
-    r'e4dfc5600a7738fc6f50cefa472213d4feee94fc';
+    r'2a41c90474dfd278de7566e5bfe7338bcd5463d4';
 
-abstract class _$NotificationsService extends $Notifier<String?> {
-  String? build();
+abstract class _$NotificationsService extends $Notifier<bool> {
+  bool build();
   @$mustCallSuper
   @override
   WhenComplete runBuild() {
-    final ref = this.ref as $Ref<String?, String?>;
+    final ref = this.ref as $Ref<bool, bool>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<String?, String?>,
-              String?,
+              AnyNotifier<bool, bool>,
+              bool,
               Object?,
               Object?
             >;
