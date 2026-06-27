@@ -4,7 +4,7 @@ import 'package:gordon_ferguson_app/app/features/posts/view/post_stream_table_vi
 import 'package:gordon_ferguson_app/app/features/settings/settings_icon_button.dart';
 import 'package:gordon_ferguson_app/app/shared/wpa_app_bar.dart';
 import 'package:gordon_ferguson_app/app/shared/wpa_search_bar.dart';
-import 'package:gordon_ferguson_app/setup.dart';
+import 'package:gordon_ferguson_app/config.dart';
 
 class PostsView extends HookWidget {
   const PostsView({super.key});

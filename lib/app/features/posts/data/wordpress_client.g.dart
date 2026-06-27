@@ -11,7 +11,9 @@ part of 'wordpress_client.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter,avoid_unused_constructor_parameters,unreachable_from_main,avoid_redundant_argument_values
 
 class _WordpressClient implements WordpressClient {
-  _WordpressClient(this._dio, {this.baseUrl, this.errorLogger});
+  _WordpressClient(this._dio, {this.baseUrl, this.errorLogger}) {
+    baseUrl ??= 'https://gordonferguson.org//wp-json/wp/v2/';
+  }
 
   final Dio _dio;
 
@@ -201,7 +203,7 @@ final class WordpressClientProvider
   }
 }
 
-String _$wordpressClientHash() => r'6a17d57c2be0a08fe26b545efa8d79b3d62d53f4';
+String _$wordpressClientHash() => r'd17b25d3e545fdaa2403282450df773257ede80e';
 
 @ProviderFor(getPosts)
 final getPostsProvider = GetPostsFamily._();

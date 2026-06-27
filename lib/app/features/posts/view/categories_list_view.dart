@@ -6,6 +6,8 @@ import 'package:gordon_ferguson_app/app/features/posts/view/category_tile.dart';
 import 'package:gordon_ferguson_app/app/shared/async_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+const _hiddenCategoryNames = {'Articles', 'Main Pages'};
+
 class CategoriesListView extends ConsumerWidget {
   const CategoriesListView({super.key});
 
@@ -17,7 +19,13 @@ class CategoriesListView extends ConsumerWidget {
     return AsyncValueWidget<List<Category>>(
       value: responseAsync,
       data: (data) {
-        final categories = data.where((c) => c.count > 0).toList();
+        final categories = data
+            .where(
+              (category) =>
+                  category.count > 0 &&
+                  !_hiddenCategoryNames.contains(category.name),
+            )
+            .toList();
         log.d("[Categories Stream] ${categories.map((e) => '${e.id}')}");
         return ListView.builder(
           padding: const EdgeInsets.all(8),

@@ -58,7 +58,7 @@ final class LaunchProvider
   }
 }
 
-String _$launchHash() => r'4d5d6efd7023d8d1884498342848b79983eb9982';
+String _$launchHash() => r'5ea85e1f2bf5d3ad79b14ee981c9f5d82e725d8a';
 
 final class LaunchFamily extends $Family
     with $FunctionalFamilyOverride<FutureOr<void>, String?> {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:gordon_ferguson_app/app/config/log_manager.dart';
 import 'package:gordon_ferguson_app/app/features/posts/domain/post.dart';
-import 'package:gordon_ferguson_app/setup.dart';
+import 'package:gordon_ferguson_app/config.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
 

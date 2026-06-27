@@ -55,7 +55,7 @@ final class FavoritesRepositoryProvider
 }
 
 String _$favoritesRepositoryHash() =>
-    r'aa6dedddf854e56d8ea991052db4af1efc956c76';
+    r'e6961d502024ed2862a215f446e0de4129b263ed';
 
 @ProviderFor(favoriteList)
 final favoriteListProvider = FavoriteListProvider._();
@@ -93,4 +93,4 @@ final class FavoriteListProvider
   }
 }
 
-String _$favoriteListHash() => r'497a4d869517587eec431d1c5f5d07a64d0b5fe6';
+String _$favoriteListHash() => r'3ecaf649405d8206f8229cfdc1b10a6b1b06af78';

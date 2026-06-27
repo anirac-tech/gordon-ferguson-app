@@ -22,7 +22,7 @@ Links:
 
 ## Getting Started With Your Own Blog 🚀
 
-Edit *SETUP.dart* in the `lib/` folder to set your desired blog URL and title.
+Edit *config.dart* in the `lib/` folder to set your desired blog URL and title.
 Then run:
 `dart run build_runner build -d`
 

@@ -1234,7 +1234,7 @@ as TargetHints,
 @override
 @pragma('vm:prefer-inline')
 $TargetHintsCopyWith<$Res> get targetHints {
-
+  
   return $TargetHintsCopyWith<$Res>(_self.targetHints, (value) {
     return _then(_self.copyWith(targetHints: value));
   });
@@ -1445,7 +1445,7 @@ as TargetHints,
 @override
 @pragma('vm:prefer-inline')
 $TargetHintsCopyWith<$Res> get targetHints {
-
+  
   return $TargetHintsCopyWith<$Res>(_self.targetHints, (value) {
     return _then(_self.copyWith(targetHints: value));
   });

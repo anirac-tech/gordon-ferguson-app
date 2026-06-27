@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:go_router/go_router.dart';
@@ -11,7 +12,6 @@ import 'package:gordon_ferguson_app/app/features/text_size/adjustable_text_widge
 import 'package:gordon_ferguson_app/app/features/text_size/text_size_icon_button.dart';
 import 'package:gordon_ferguson_app/app/shared/error_snackbar_view.dart';
 import 'package:gordon_ferguson_app/app/shared/url_launcher.dart';
-import 'package:gordon_ferguson_app/app/shared/wpa_app_bar.dart';
 import 'package:gordon_ferguson_app/app/shared/wpa_image.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -29,6 +29,7 @@ class PostDetailView extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final appBarBackgroundColor = theme.appBarTheme.backgroundColor ?? theme.colorScheme.surface;
     final url0 = useState(null as String?);
     final heroMode = useState(true);
     final heroTag =
@@ -40,12 +41,14 @@ class PostDetailView extends HookConsumerWidget {
     return ErrorSnackbarView(
       provider: launchProvider(url: url0.value),
       child: Scaffold(
-        appBar: WpaAppBar(
-          title: const Text('Post Details'),
-          actions: <Widget>[ShareIconButton(post), FavoriteIconButton(post)],
+        appBar: AppBar(
+          toolbarHeight: 0,
+          backgroundColor: appBarBackgroundColor,
+          elevation: 0,
+          scrolledUnderElevation: 0,
         ),
-        body: Padding(
-          padding: EdgeInsets.only(bottom: bottomSheetHeight, left: 8, right: 8),
+        body: SafeArea(
+          bottom: false,
           child: NotificationListener<ScrollNotification>(
             // coverage:ignore-start
             // untestable
@@ -56,9 +59,17 @@ class PostDetailView extends HookConsumerWidget {
               return true;
             },
             // coverage:ignore-end
-            child: AdjustableTextWidget(
-              child: SingleChildScrollView(
-                child: Column(
+            child: CustomScrollView(
+              slivers: [
+                SliverAppBar(
+                  backgroundColor: appBarBackgroundColor,
+                  title: const Text('Post Details'),
+                  centerTitle: false,
+                  floating: true,
+                  snap: true,
+                  actions: <Widget>[ShareIconButton(post), FavoriteIconButton(post)],
+                ),
+                SliverList.list(
                   children: [
                     if (post.imageUrl != null)
                       HeroMode(
@@ -80,43 +91,39 @@ class PostDetailView extends HookConsumerWidget {
                         style: theme.textTheme.labelLarge,
                       ),
                     ),
-                    Html(
-                      data: post.content.rendered,
-                      extensions: [
-                        TagExtension(
-                          tagsToExtend: {'img'},
-                          builder: (tag) => tag.attributes['src'] != null
-                              ? SizedBox(
-                                  width: MediaQuery.of(context).size.width - 16,
-                                  child: WpaImage(tag.attributes['src']!),
-                                )
-                              : const SizedBox(),
-                        ),
-                      ],
-                      onLinkTap: (url, _, __) =>
-                          (url == url0.value) ? ref.invalidate(launchProvider) : url0.value = url,
+                    AdjustableTextWidget(
+                      child: Html(
+                        data: post.content.rendered,
+                        extensions: [
+                          TagExtension(
+                            tagsToExtend: {'img'},
+                            builder: (tag) => tag.attributes['src'] != null
+                                ? SizedBox(
+                                    width: MediaQuery.of(context).size.width - 16,
+                                    child: WpaImage(tag.attributes['src']!),
+                                  )
+                                : const SizedBox(),
+                          ),
+                        ],
+                        onLinkTap: (url, _, __) =>
+                            (url == url0.value) ? ref.invalidate(launchProvider) : url0.value = url,
+                      ),
                     ),
                   ],
                 ),
-              ),
-            ),
-          ),
-        ),
-        bottomSheet: SafeArea(
-          child: SizedBox(
-            height: bottomSheetHeight,
-            child: const Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Spacer(),
-                TextSizeIconButton(isIncrease: false),
-                TextSizeIconButton(),
-                Spacer(),
               ],
             ),
           ),
         ),
+        floatingActionButton: const Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextSizeIconButton.floating(isIncrease: false),
+            SizedBox(width: 8),
+            TextSizeIconButton.floating(),
+          ],
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       ),
     );
   }

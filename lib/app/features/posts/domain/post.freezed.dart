@@ -83,7 +83,7 @@ as Embedded?,
 @override
 @pragma('vm:prefer-inline')
 $RenderableCopyWith<$Res> get title {
-
+  
   return $RenderableCopyWith<$Res>(_self.title, (value) {
     return _then(_self.copyWith(title: value));
   });
@@ -92,7 +92,7 @@ $RenderableCopyWith<$Res> get title {
 @override
 @pragma('vm:prefer-inline')
 $RenderableCopyWith<$Res> get content {
-
+  
   return $RenderableCopyWith<$Res>(_self.content, (value) {
     return _then(_self.copyWith(content: value));
   });
@@ -101,7 +101,7 @@ $RenderableCopyWith<$Res> get content {
 @override
 @pragma('vm:prefer-inline')
 $RenderableCopyWith<$Res> get excerpt {
-
+  
   return $RenderableCopyWith<$Res>(_self.excerpt, (value) {
     return _then(_self.copyWith(excerpt: value));
   });
@@ -342,7 +342,7 @@ as Embedded?,
 @override
 @pragma('vm:prefer-inline')
 $RenderableCopyWith<$Res> get title {
-
+  
   return $RenderableCopyWith<$Res>(_self.title, (value) {
     return _then(_self.copyWith(title: value));
   });
@@ -351,7 +351,7 @@ $RenderableCopyWith<$Res> get title {
 @override
 @pragma('vm:prefer-inline')
 $RenderableCopyWith<$Res> get content {
-
+  
   return $RenderableCopyWith<$Res>(_self.content, (value) {
     return _then(_self.copyWith(content: value));
   });
@@ -360,7 +360,7 @@ $RenderableCopyWith<$Res> get content {
 @override
 @pragma('vm:prefer-inline')
 $RenderableCopyWith<$Res> get excerpt {
-
+  
   return $RenderableCopyWith<$Res>(_self.excerpt, (value) {
     return _then(_self.copyWith(excerpt: value));
   });

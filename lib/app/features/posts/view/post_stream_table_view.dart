@@ -7,7 +7,7 @@ import 'package:gordon_ferguson_app/app/features/posts/view/post_cell.dart';
 import 'package:gordon_ferguson_app/app/features/posts/view/screens/post_detail_view.dart';
 import 'package:gordon_ferguson_app/app/features/posts/view/screens/posts_view.dart';
 import 'package:gordon_ferguson_app/app/shared/async_widget.dart';
-import 'package:gordon_ferguson_app/setup.dart';
+import 'package:gordon_ferguson_app/config.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class PostStreamTableView extends ConsumerWidget {

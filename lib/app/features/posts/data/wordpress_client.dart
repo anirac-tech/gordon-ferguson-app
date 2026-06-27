@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:gordon_ferguson_app/app/features/posts/domain/category.dart';
 import 'package:gordon_ferguson_app/app/features/posts/domain/post.dart';
 import 'package:gordon_ferguson_app/app/features/posts/domain/post_response.dart';
-import 'package:gordon_ferguson_app/setup.dart';
+import 'package:gordon_ferguson_app/config.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -39,7 +39,7 @@ abstract class WordpressClient {
 @riverpod
 WordpressClient wordpressClient(Ref _) {
   final dio = Dio();
-  return WordpressClient(dio);
+  return WordpressClient(dio, baseUrl: '$wordpressUrl/wp-json/wp/v2/');
 }
 //coverage:ignore-end
 

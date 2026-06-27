@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:gordon_ferguson_app/app/app.dart';
 import 'package:gordon_ferguson_app/app/features/posts/view/screens/posts_view.dart';
 import 'package:gordon_ferguson_app/app/shared/navigation_icons.dart';
-import 'package:gordon_ferguson_app/setup.dart';
+import 'package:gordon_ferguson_app/config.dart';
 
 import '../../data/test_data.dart';
 import '../../helpers/helpers.dart';

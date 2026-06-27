@@ -42,7 +42,7 @@ final class TextSizeControllerProvider
 }
 
 String _$textSizeControllerHash() =>
-    r'b7616130f3b70f8071e38d4bf32c0e7d71b73a14';
+    r'7387770dfe58e7b45a117fb1822ca1dd62ecd1c0';
 
 abstract class _$TextSizeController extends $Notifier<double> {
   double build();
