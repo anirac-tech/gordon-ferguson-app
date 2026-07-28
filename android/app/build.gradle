@@ -34,7 +34,7 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     namespace "gordonferguson.org.gordon_ferguson_teachings_app"
-    compileSdkVersion flutter.compileSdkVersion
+    compileSdkVersion 36
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -55,8 +55,8 @@ android {
         applicationId "gordonferguson.org.gordon_ferguson_teachings_app"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion 21
-        targetSdkVersion 35
+        minSdkVersion flutter.minSdkVersion
+        targetSdkVersion 36
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
@@ -112,8 +112,4 @@ android {
 
 flutter {
     source '../..'
-}
-
-dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.7.10"
 }
